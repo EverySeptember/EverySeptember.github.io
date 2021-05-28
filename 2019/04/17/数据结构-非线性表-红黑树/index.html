@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>数据结构-非线性表-红黑树 | 这里是lu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="平衡二叉查找树平衡二叉树二叉树中任意一个节点的左右子树的高度相差不能大于1 所以满二叉树、完全二叉树都是平衡二叉树，但非完全二叉树也可能是平衡二叉树 平衡二叉查找树在满足平衡二叉树的同时，还满足二叉查找树的特点 红黑树红黑树是一种不严格的平衡二叉查找树，它的各个叶子节点的深度可能相差一倍 红黑树中的节点，一类被标记为黑色，一类被标记为红色，同时还要满足以下几个要求：  根节点是黑色的 每个叶子结点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构-非线性表-红黑树">
+<meta property="og:url" content="http://everyseptember.github.io/2019/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E7%BA%A2%E9%BB%91%E6%A0%91/index.html">
+<meta property="og:site_name" content="这里是lu">
+<meta property="og:description" content="平衡二叉查找树平衡二叉树二叉树中任意一个节点的左右子树的高度相差不能大于1 所以满二叉树、完全二叉树都是平衡二叉树，但非完全二叉树也可能是平衡二叉树 平衡二叉查找树在满足平衡二叉树的同时，还满足二叉查找树的特点 红黑树红黑树是一种不严格的平衡二叉查找树，它的各个叶子节点的深度可能相差一倍 红黑树中的节点，一类被标记为黑色，一类被标记为红色，同时还要满足以下几个要求：  根节点是黑色的 每个叶子结点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/0e/1e/0e37e597737012593a93105ebbf4591e.jpg">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/60/40/603cf91f54b5db21bd02c6c5678ecf40.jpg">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/44/ad/4480a314f9d83c343b8adbb28b6782ad.jpg">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/04/12/04650d9470b1e67899f5b8b7b8e33212.jpg">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/a6/c3/a6c4c347b7cbdf57662bab399ed36cc3.jpg">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/48/4e/48e3bd2cdd66cb635f8a4df8fb8fd64e.jpg">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/b9/29/b93c1fa4de16aee5482424ddf49f3c29.jpg">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/ac/91/ac76d78c064a2486e2a5b4c4903acb91.jpg">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/ec/ec/eca118d673c607eb2b103f3476fb24ec.jpg">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/44/af/44075213100edd70315e1492422c92af.jpg">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/5f/44/5f73f61bf77a7f2bb75f168cf432ec44.jpg">
+<meta property="article:published_time" content="2019-04-17T11:14:49.000Z">
+<meta property="article:modified_time" content="2021-05-28T01:53:34.523Z">
+<meta property="article:author" content="lu">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="非线性表">
+<meta property="article:tag" content="树">
+<meta property="article:tag" content="二叉树">
+<meta property="article:tag" content="红黑树">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static001.geekbang.org/resource/image/0e/1e/0e37e597737012593a93105ebbf4591e.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="这里是lu" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">这里是lu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://everyseptember.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数据结构-非线性表-红黑树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E7%BA%A2%E9%BB%91%E6%A0%91/" class="article-date">
+  <time class="dt-published" datetime="2019-04-17T11:14:49.000Z" itemprop="datePublished">2019-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      数据结构-非线性表-红黑树
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="平衡二叉查找树"><a href="#平衡二叉查找树" class="headerlink" title="平衡二叉查找树"></a>平衡二叉查找树</h3><h5 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h5><p>二叉树中任意一个节点的左右子树的高度相差不能大于1</p>
+<p>所以满二叉树、完全二叉树都是平衡二叉树，但非完全二叉树也可能是平衡二叉树</p>
+<h5 id="平衡二叉查找树-1"><a href="#平衡二叉查找树-1" class="headerlink" title="平衡二叉查找树"></a>平衡二叉查找树</h5><p>在满足平衡二叉树的同时，还满足二叉查找树的特点</p>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>红黑树是一种不严格的平衡二叉查找树，它的各个叶子节点的深度可能相差一倍</p>
+<p>红黑树中的节点，一类被标记为黑色，一类被标记为红色，同时还要满足以下几个要求：</p>
+<ul>
+<li>根节点是黑色的</li>
+<li>每个叶子结点都是黑色的空节点（NIL），即叶子结点不存储数据（为了更简单地实现）</li>
+<li>任何相邻的节点都不能同时为红色，即红色节点是被黑色节点分开的</li>
+<li>每个节点，从该节点通过任何路径到达其可达叶子结点，都包含相同数量的黑色节点</li>
+</ul>
+<p>将红黑树种的红色节点全部取出，然后将子节点接到祖父节点上，这样会形成四叉树。由于红黑树任意节点到叶子节点都包含相同数量黑色节点的特性，形成的四叉树的所有叶子结点高度相同。将多余的节点放到叶子节点中，就会形成完全二叉树。这时其高度是log2 n，将红色节点放回其位置，由于红色节点不相邻的特性，其高度不会超过2 * log2 n，所以操作复杂度仍是<code>O(logn)</code>，性能仍然很好。</p>
+<p>红黑树的插入、删除操作会破坏红黑树的平衡，需要调整平衡。</p>
+<h4 id="左旋（rotate-left）、右旋（rotate-right）"><a href="#左旋（rotate-left）、右旋（rotate-right）" class="headerlink" title="左旋（rotate left）、右旋（rotate right）"></a>左旋（rotate left）、右旋（rotate right）</h4><p><img src="https://static001.geekbang.org/resource/image/0e/1e/0e37e597737012593a93105ebbf4591e.jpg" alt="左旋、右旋"></p>
+<h4 id="插入平衡操作"><a href="#插入平衡操作" class="headerlink" title="插入平衡操作"></a>插入平衡操作</h4><p>红黑树规定，插入的节点必须是红色的。而且，二叉查找树中新插入的节点都是都是放在叶子结点上。</p>
+<ul>
+<li>如果插入节点的父节点是黑色的，直接插入即可；</li>
+<li>如果插入的节点是根节点，则直接将其转成黑色；</li>
+<li>除上述两种情况外的所有情况都会破坏红黑树平衡，需要进行平衡调整；</li>
+</ul>
+<h5 id="插入操作调整步骤"><a href="#插入操作调整步骤" class="headerlink" title="插入操作调整步骤"></a>插入操作调整步骤</h5><p>首先，当前正在处理的节点叫做关注节点，处理的节点都是红色的。</p>
+<h6 id="CASE1：如果当前关注节点a的叔叔节点d是红色的"><a href="#CASE1：如果当前关注节点a的叔叔节点d是红色的" class="headerlink" title="CASE1：如果当前关注节点a的叔叔节点d是红色的"></a>CASE1：如果当前关注节点a的叔叔节点d是红色的</h6><ol>
+<li><p>将关注节点a的父节点b和叔叔节点d调整为黑色</p>
+</li>
+<li><p>将关注节点a的祖父节点c调整为红色</p>
+</li>
+<li><p>将关注节点设置为a的祖父节点c</p>
+</li>
+<li><p>跳转到CASE2或者CASE3</p>
+<p><img src="https://static001.geekbang.org/resource/image/60/40/603cf91f54b5db21bd02c6c5678ecf40.jpg" alt="CASE1"></p>
+</li>
+</ol>
+<h6 id="CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点"><a href="#CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点" class="headerlink" title="CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点"></a>CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点</h6><ol>
+<li><p>将关注节点设置为当前关注节点a的父节点b</p>
+</li>
+<li><p>围绕节点b进行左旋</p>
+</li>
+<li><p>跳转到CASE3</p>
+<p><img src="https://static001.geekbang.org/resource/image/44/ad/4480a314f9d83c343b8adbb28b6782ad.jpg" alt="CASE2"></p>
+</li>
+</ol>
+<h6 id="CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点"><a href="#CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点" class="headerlink" title="CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点"></a>CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点</h6><ol>
+<li><p>围绕当前关注节点a的祖父节点c进行右旋</p>
+</li>
+<li><p>将a的父节点b与兄弟节点c进行颜色互换</p>
+</li>
+<li><p>结束</p>
+<p><img src="https://static001.geekbang.org/resource/image/04/12/04650d9470b1e67899f5b8b7b8e33212.jpg" alt="CASE3"></p>
+</li>
+</ol>
+<h4 id="删除平衡操作"><a href="#删除平衡操作" class="headerlink" title="删除平衡操作"></a>删除平衡操作</h4><p>删除操作分两个步骤完成</p>
+<ol>
+<li>初步调整：使其满足从每个节点从其自身达到叶子结点的所有路径，都含有相同数量的黑色节点</li>
+<li>二次调整：使其满足红色节点不相邻</li>
+</ol>
+<h5 id="初步调整"><a href="#初步调整" class="headerlink" title="初步调整"></a>初步调整</h5><h6 id="CASE1：删除的节点a只有一个子节点"><a href="#CASE1：删除的节点a只有一个子节点" class="headerlink" title="CASE1：删除的节点a只有一个子节点"></a>CASE1：删除的节点a只有一个子节点</h6><p>被删除的节点需要为黑色，其子节点为红色，这样才能保证满足红黑树的定义</p>
+<ol>
+<li><p>删除节点a，并将其子节点替b换到a的位置</p>
+</li>
+<li><p>将b的颜色改为黑色</p>
+</li>
+<li><p>结束调整，不需要二次调整</p>
+<p><img src="https://static001.geekbang.org/resource/image/a6/c3/a6c4c347b7cbdf57662bab399ed36cc3.jpg" alt="CASE1"></p>
+</li>
+</ol>
+<h6 id="CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c"><a href="#CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c" class="headerlink" title="CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c"></a>CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c</h6><ol>
+<li><p>因为关注节点a的后继节点即为其右子节点c，所以节点c不会有左子树；将节点a删除，并将其右子节点c替换至节点a的位置，修改节点c为节点a的颜色</p>
+</li>
+<li><p>如果节点c原来的颜色为黑色，则不满足最后一条的特性，需要将节点c的右子节点d多加一个黑色，即“红黑”或者“黑黑”</p>
+</li>
+<li><p>将关注节点变更为节点d，在二次调整时对其进行颜色调整</p>
+<p><img src="https://static001.geekbang.org/resource/image/48/4e/48e3bd2cdd66cb635f8a4df8fb8fd64e.jpg" alt="CASE2"></p>
+</li>
+</ol>
+<h6 id="CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点"><a href="#CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点" class="headerlink" title="CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点"></a>CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点</h6><ol>
+<li><p>找到节点a的后继节点d，将节点d替换至节点a，并修改其颜色与节点a相同，然后将节点d删除（删除方法参照CASE1）</p>
+</li>
+<li><p>如果节点d原来的颜色是黑色，则不满足最后一条的特性，需要将现节点d的右子节点c多加一个黑色，即“红黑”或者“黑黑”</p>
+</li>
+<li><p>将关注节点变更为节点c，在二次调整时对其进行颜色调整</p>
+<p><img src="https://static001.geekbang.org/resource/image/b9/29/b93c1fa4de16aee5482424ddf49f3c29.jpg" alt="CASE3"></p>
+</li>
+</ol>
+<h5 id="二次调整"><a href="#二次调整" class="headerlink" title="二次调整"></a>二次调整</h5><p>初步调整之后，关注节点的颜色为“红黑”或者“黑黑”</p>
+<h6 id="CASE1：关注节点a的兄弟节点c颜色是红色的"><a href="#CASE1：关注节点a的兄弟节点c颜色是红色的" class="headerlink" title="CASE1：关注节点a的兄弟节点c颜色是红色的"></a>CASE1：关注节点a的兄弟节点c颜色是红色的</h6><ol>
+<li><p>围绕节点a的父节点b进行左旋</p>
+</li>
+<li><p>关注节点a的父节点b和祖父节c点交换颜色</p>
+</li>
+<li><p>关注节点不变，继续从四种情况中选择合适的规则进行调整</p>
+<p><img src="https://static001.geekbang.org/resource/image/ac/91/ac76d78c064a2486e2a5b4c4903acb91.jpg" alt="CASE1"></p>
+</li>
+</ol>
+<h6 id="CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色"><a href="#CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色" class="headerlink" title="CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色"></a>CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色</h6><ol>
+<li><p>将节点a的兄弟节点c变更为红色</p>
+</li>
+<li><p>将节点a中去掉一个黑色，此时节点a便变成了单纯的红色或者黑色</p>
+</li>
+<li><p>给节点a的父节点b添加一个黑色，此时节点b变成了“红黑”或者“黑黑”</p>
+</li>
+<li><p>关注节点变更为父节点b</p>
+</li>
+<li><p>继续从四种情况中进行选择</p>
+<p><img src="https://static001.geekbang.org/resource/image/ec/ec/eca118d673c607eb2b103f3476fb24ec.jpg" alt="CASE2"></p>
+</li>
+</ol>
+<h6 id="CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的"><a href="#CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的" class="headerlink" title="CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的"></a>CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的</h6><ol>
+<li><p>围绕节点a的兄弟节点c右旋</p>
+</li>
+<li><p>节点c和节点d交换颜色</p>
+</li>
+<li><p>关注节点不变，跳到CASE4继续调整</p>
+<p><img src="https://static001.geekbang.org/resource/image/44/af/44075213100edd70315e1492422c92af.jpg" alt="CASE3"></p>
+</li>
+</ol>
+<h6 id="CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的"><a href="#CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的" class="headerlink" title="CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的"></a>CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的</h6><ol>
+<li><p>围绕节点a父节点b左旋</p>
+</li>
+<li><p>将节点c的颜色设置为节点b的颜色</p>
+</li>
+<li><p>将关注节点父节点b颜色设置为黑色</p>
+</li>
+<li><p>节点a中去掉一个黑色，节点a就变成了单纯的红色或者黑色</p>
+</li>
+<li><p>节点a的叔叔节点e颜色设置为黑色</p>
+</li>
+<li><p>调整结束</p>
+<p><img src="https://static001.geekbang.org/resource/image/5f/44/5f73f61bf77a7f2bb75f168cf432ec44.jpg" alt="CASE4"></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://everyseptember.github.io/2019/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E7%BA%A2%E9%BB%91%E6%A0%91/" data-id="ckp7o8tjn001n10mw57suc3yq" data-title="数据结构-非线性表-红黑树" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" rel="tag">红黑树</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag">非线性表</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E5%A0%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          数据结构-非线性表-堆
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E4%BA%8C%E5%8F%89%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">数据结构-非线性表-二叉树</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">Java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" rel="tag">Java核心技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E5%9F%BA%E7%A1%80/" rel="tag">MySQL基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" rel="tag">MySQL存储引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSM/" rel="tag">SSM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-MVC/" rel="tag">Spring MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Web/" rel="tag">Spring Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot%E7%AC%94%E8%AE%B0/" rel="tag">Springboot笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/" rel="tag">Springboot零散笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/" rel="tag">分库分表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" rel="tag">参数配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%88%E5%B8%8C/" rel="tag">哈希</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE/" rel="tag">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A0%86/" rel="tag">堆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/" rel="tag">字符串匹配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/" rel="tag">开发模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%85%A2SQL%E6%97%A5%E5%BF%97/" rel="tag">慢SQL日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" rel="tag">执行计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" rel="tag">散列表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B4%A2%E5%BC%95/" rel="tag">索引</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" rel="tag">红黑树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag">线性表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag">非线性表</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Freemarker/" style="font-size: 10px;">Freemarker</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" style="font-size: 11.67px;">Java核心技术</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 18.33px;">MySQL</a> <a href="/tags/MySQL%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">MySQL基础</a> <a href="/tags/MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" style="font-size: 10px;">MySQL存储引擎</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SSM/" style="font-size: 16.67px;">SSM</a> <a href="/tags/Spring/" style="font-size: 11.67px;">Spring</a> <a href="/tags/Spring-MVC/" style="font-size: 11.67px;">Spring MVC</a> <a href="/tags/Spring-Web/" style="font-size: 10px;">Spring Web</a> <a href="/tags/Springboot%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">Springboot笔记</a> <a href="/tags/Springboot%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/" style="font-size: 20px;">Springboot零散笔记</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 13.33px;">二叉树</a> <a href="/tags/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/" style="font-size: 10px;">分库分表</a> <a href="/tags/%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">参数配置</a> <a href="/tags/%E5%93%88%E5%B8%8C/" style="font-size: 10px;">哈希</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 10px;">基础知识</a> <a href="/tags/%E5%A0%86/" style="font-size: 10px;">堆</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/" style="font-size: 10px;">字符串匹配</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">开发模式</a> <a href="/tags/%E6%85%A2SQL%E6%97%A5%E5%BF%97/" style="font-size: 10px;">慢SQL日志</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">执行计划</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">排序</a> <a href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" style="font-size: 10px;">散列表</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 20px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18.33px;">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 13.33px;">架构</a> <a href="/tags/%E6%A0%91/" style="font-size: 13.33px;">树</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 16.67px;">框架</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%B4%A2%E5%BC%95/" style="font-size: 10px;">索引</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 10px;">红黑树</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/" style="font-size: 10px;">线性表</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.67px;">运维</a> <a href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8/" style="font-size: 15px;">非线性表</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/28/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/CAP/">CAP</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/%E6%9E%B6%E6%9E%84-Spring%20Web%E4%B8%8ESpring%20MVC/">架构-Spring Web与Spring MVC</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/%E6%9E%B6%E6%9E%84-Spring/">架构-Spring</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/08/%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/">架构-Java基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 lu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

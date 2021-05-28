@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MySQL调优-参数配置 | 这里是lu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="设置参数的方法以下方法优先级递减，第一种关闭当前session后失效，第二种当前服务进程关闭后失效  set [session] 参数名 &#x3D; 参数值; #设置当前会话（连接）参数 set global 参数名 &#x3D; 参数值; #设置全局参数，部分设置需要新建会话才生效 设置应用配置文件 Windows下将配置文件my.ini存放到应用程序根目录 Linux保存到&#x2F;etc&#x2F;my.cnf文件    常用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL调优-参数配置">
+<meta property="og:url" content="http://everyseptember.github.io/2019/07/24/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="这里是lu">
+<meta property="og:description" content="设置参数的方法以下方法优先级递减，第一种关闭当前session后失效，第二种当前服务进程关闭后失效  set [session] 参数名 &#x3D; 参数值; #设置当前会话（连接）参数 set global 参数名 &#x3D; 参数值; #设置全局参数，部分设置需要新建会话才生效 设置应用配置文件 Windows下将配置文件my.ini存放到应用程序根目录 Linux保存到&#x2F;etc&#x2F;my.cnf文件    常用">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-24T12:38:29.000Z">
+<meta property="article:modified_time" content="2021-05-28T01:53:34.523Z">
+<meta property="article:author" content="lu">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="参数配置">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="这里是lu" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">这里是lu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://everyseptember.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数据库-MySQL-参数配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/24/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2019-07-24T12:38:29.000Z" itemprop="datePublished">2019-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      MySQL调优-参数配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="设置参数的方法"><a href="#设置参数的方法" class="headerlink" title="设置参数的方法"></a>设置参数的方法</h4><p>以下方法优先级递减，第一种关闭当前session后失效，第二种当前服务进程关闭后失效</p>
+<ul>
+<li>set [session] 参数名 = 参数值; #设置当前会话（连接）参数</li>
+<li>set global 参数名 = 参数值; #设置全局参数，部分设置需要新建会话才生效</li>
+<li>设置应用<a target="_blank" rel="noopener" href="https://blog.51cto.com/moerjinrong/2092791">配置文件</a><ul>
+<li>Windows下将配置文件my.ini存放到应用程序根目录</li>
+<li>Linux保存到/etc/my.cnf文件</li>
+</ul>
+</li>
+</ul>
+<h4 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h4><h5 id="connection连接参数"><a href="#connection连接参数" class="headerlink" title="connection连接参数"></a>connection连接参数</h5><ul>
+<li><p>max_connections，最大连接数，<code>show VARIABLES like &#39;max_connections&#39;;</code></p>
+<p>max_connections 代表数据库同时允许的最大允许连接数</p>
+<p>连接有两种常见状态:sleep / query </p>
+<p>sleep 代表连接处于闲置状态</p>
+<p>query 代表连接正处于处理任务的状态</p>
+<p>sleep + query 连接的总量不能超过max_connections的设置值</p>
+<p>否则会出现经典错误:”ERROR 1040：Too many connetcions”</p>
+</li>
+<li><p>Thread%，查看连接状态，<code>show status like &#39;Threads%&#39;;</code></p>
+<p>Threads_connected 代表当前已经有多少连接(Sleep+Query)</p>
+<p>Threads_created 代表历史总共创建过多少个数据库连接 </p>
+<p>Threads_running 代表有几个连接正处于”工作”状态，也是目前的并发数</p>
+<p>Threads_cached 共缓存过多少连接.如果我们在MySQL服务器配置文件中设置了thread_cache_size，当客户端断开之后，服务器处理此客户的线程将会缓存起来以响应下一个客户而不是销毁(前提是缓存数未达上限)。</p>
+<p>例：<code>set global thread_cache_size=80;</code>（缓存80个数据库缓存连接）</p>
+<p>查询MySQL历史运行过程中最大连接数的数量及时点，可根据该值去估算更改缓存大小</p>
+<p><code>show status like &#39;Max_used_connections%&#39;;</code></p>
+</li>
+<li><p>back_log，设置保存多少数据库请求到堆栈（缓冲区）中，<code>show VARIABLES LIKE &#39;back_log&#39;</code></p>
+<p>如果MySql的连接数达到max_connections时，新来的请求将会被存在堆栈中，以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源。将会报：<br>unauthenticated user | xxx.xxx.xxx.xxx | NULL | Connect | NULL | login | NULL 的待连接进程时</p>
+</li>
+<li><p>wait_timeout和interactive_timeout，这两个参数都是至超过一段时间后，数据库连接自动关闭(默认28800秒，即8小时)</p>
+<p>interactive_timeout针对交互式连接，wait_timeout针对非交互式连接。</p>
+<p>说得直白一点，通过mysql客户端连接数据库是交互式连接，通过jdbc连接数据库是非交互式连接。</p>
+<p>查看当前数据库连接详细状况：<code>show processlist;</code></p>
+</li>
+</ul>
+<h5 id="查询缓存（QC）参数"><a href="#查询缓存（QC）参数" class="headerlink" title="查询缓存（QC）参数"></a>查询缓存（QC）参数</h5><p>将结果放入到内存缓存区，之后使用相同（需完全相同，包括字符和大小写）的select语句，将直接从缓存区读取</p>
+<p>使用<code>show status like &#39;Qcache%&#39;;</code>查看当前缓存使用情况</p>
+<ul>
+<li><p>Qcache_free_memory:Query Cache 中目前剩余的内存大小。通过这个参数我们可以较为准确的观察当前系统中的Query Cache内存大小是否足够，是需要增多还是过多了。</p>
+</li>
+<li><p>Qcache_lowmen_prunes：多少条Query因为内存不足而被清除出Query Cache，通过Qcache_lowmem_prunes和Qcache_free_memory 相互结合，能够更清楚的了解到我们系统中Query Cache的内存大小是否真的足够，是否非常频繁的出现因为内存不足而有Query被换出。这个数字最好是长时间来看，如果这个数字在不断增长，就表示可能碎片化非常严重，或者内存很少。</p>
+</li>
+<li><p>Qcache_total_blocks：当前Query Cache中block的数量</p>
+</li>
+<li><p>Qcache_free_blocks：缓存中相邻内存块的个数。如果该值显示过大，则说明Query Cache中的内存碎片较多了。</p>
+<p>查询缓存碎片率：Qcache_free_block/Qcache_total_block*100%。如果查询缓存碎片率超过20%，可以用flush query cache整理缓存碎片。Block默认是 4KB ，设置值大对大数据查询有好处，但是如果你查询的都是小数据查询，就容易造成内存碎片和浪费。</p>
+</li>
+<li><p>Qcache_hits：表示有多少次命中缓存。我们主要可以通过该值来验证我们的查询能缓存的效果。数字越大缓存效果越理想。</p>
+</li>
+</ul>
+<ul>
+<li>Qcache_inserts：表示多少次未命中而插入，意思是新来的SQL请求在缓存中未找到，不得不执行查询处理，执行查询处理后把结果insert带查询缓存中。这样的情况次数越多，表示查询缓存 应用到的比较少，效果也就不理想。</li>
+</ul>
+<ul>
+<li>Qcache_queries_in_cache:当前缓存中缓存的查询数量。 </li>
+</ul>
+<ul>
+<li>Qcache_not_cached 未进入查询缓存的select个数</li>
+</ul>
+<p>缓存参数设置</p>
+<ul>
+<li><p>query_cache_size，缓存大小。QC存储的单位最小是1024byte，所以如果你设定的一个不是1024的倍数的值。这个值会被四舍五入到最接近当前值的等于1024的倍数的值</p>
+</li>
+<li><p>query_cache_limit，超出此大小的查询将不被缓存</p>
+</li>
+<li><p>query_cache_type：缓存类型，决定缓存什么样子的查询，注意这个值不能随便设置必须设置为数字，<strong>5.7中默认禁用QC，无法使用set命令设置，需要在my.ini中进行开启，</strong>，可选值以及说明如下：</p>
+<ul>
+<li> 0：OFF 相当于禁用了</li>
+<li>1：ON 将缓存所有结果，除非你的select语句使用了SQL_NO_CACHE禁用了查询缓存</li>
+<li>2：DENAND  则只缓存select语句中通过SQL_CACHE指定需要缓存的查询。</li>
+</ul>
+</li>
+<li><p>query_cache_min_res_unit：缓存块的最小大小，query_cache_min_res_unit的配置是一柄双刃剑，默认是 4KB ，设置值大对大数据查询有好处，但是如果你查询的都是小数据查询，就容易造成内存碎片和浪费。</p>
+<p>每个查询占用缓存的平均值=（query_cache_size - Qcache_free_memory）/ Qcache_queries_in_cache</p>
+<p>查询缓存利用率：（query_cache_size - Qcache_free_memory) / query_cache_size * 100%，查询缓存利用率在25%以下的话说明query_cache_size 设置过大，可以适当减小：查询缓存利用率在80%以上而且Qcache_lowmem_prunes &gt; 50的话说明query_cache_size可能有点小，要不就是碎片太多</p>
+<p>查询缓存命中率：Qcache_hits/(Qcache_hits+Qcache_inserts)*100%</p>
+</li>
+<li><p>sort_buffer_size，排序缓冲区</p>
+<p>每个需要排序的线程分配该大小的一个缓冲区。增加这值加速ORDER BY 或 GROUP BY操作 sort_buffer_size是一个connection级的参数，在每个 connection（session）第一次需要使用这个buffer的时候，一次性分配设置的内存。sort_buffer_size并不是越大越好，由于是connection级的参数，过大的设置+高并发可能会耗尽系统的内存资源。例如：500个连接将会消耗500*sort_buffer_size(2M)=1G</p>
+</li>
+</ul>
+<h5 id="InooDB参数设置"><a href="#InooDB参数设置" class="headerlink" title="InooDB参数设置"></a>InooDB参数设置</h5><ul>
+<li><p>innodb_buffer_pool_size，缓存池大小设置</p>
+<p>该值设置可参考以下三个参数</p>
+<ul>
+<li><p>Innodb已使用的缓存”页Page”数量</p>
+<p>show global status like ‘Innodb_buffer_pool_pages_data’;</p>
+</li>
+<li><p>Innodb全部缓存页数量</p>
+<p>show global status like ‘Innodb_buffer_pool_pages_total’;</p>
+</li>
+<li><p>Innodb每页的长度</p>
+<p>show global status like ‘Innodb_page_size’;</p>
+</li>
+</ul>
+<p>使用这三个参数计算页面使用率：</p>
+<p>result = Innodb_buffer_pool_pages_data / Innodb_buffer_pool_pages_total * 100%；</p>
+<p>val &gt; 95% 则考虑增大 innodb_buffer_pool_size， 建议使用物理内存的75%<br>val &lt; 95% 则考虑减小 innodb_buffer_pool_size， 建议设置为：Innodb_buffer_pool_pages_data * Innodb_page_size * 1.05 / (1024<em>1024</em>1024)</p>
+</li>
+<li><p>innodb_flush_log_at_trx_commit，在事务控制中，存在”事务区”来保证事务完整性，在事务提交以后，这些事务区的数据会写入到硬盘上，同时事务操作日志（log）也需要向硬盘中写入。这个参数就是用来控制何时写日志数据的，可以设置以下三个值</p>
+<ul>
+<li>0：log buffer将每秒一次地写入log file中，并且log file的flush(刷到磁盘)操作同时进行。该模式下在事务提交的时候，不会主动触发写入磁盘的操作。</li>
+<li>1：每次事务提交时MySQL都会把log buffer的数据写入log file，并且flush（刷到磁盘）中去，该模式为系统默认。</li>
+<li>2：每次事务提交时MySQL都会把log buffer的数据写入log file，但是flush（刷到磁盘）操作并不会同时进行。该模式下，MySQL会每秒执行一次 flush（刷到磁盘）操作。</li>
+</ul>
+<p>优劣性比较</p>
+<ul>
+<li>当设置为0，该模式速度最快，但不太安全，mysqld进程的崩溃会导致上一秒钟所有事务数据的丢失。</li>
+<li>当设置为1，该模式是最安全的，但也是最慢的一种方式。在mysqld 服务崩溃或者服务器主机crash的情况下，binary log 只有可能丢失最多一个语句或者一个事务。。</li>
+<li>当设置为2，该模式速度较快，也比0安全，只有在操作系统崩溃或者系统断电的情况下，上一秒钟所有事务数据才可能丢失。</li>
+<li>实际测试发现，该值对插入数据的速度影响非常大，设置为2时插入10000条记录只需要两秒，设置为0时只需要一秒，设置为1时，则需要229秒。因此，MySQL手册也建议尽量将插入操作合并成一个事务，这样可以大幅度提高速度。</li>
+</ul>
+</li>
+<li><p>innodb_doublewrite，双写操作，同一份数据写入两次，保证数据存在一个副本，预防数据因为介质问题产生丢失，默认开启</p>
+</li>
+<li><p>innodb_file_per_table，表空间存储模式</p>
+<ul>
+<li>0，使用统一的系统表空间</li>
+<li>1，使用独立的表空间</li>
+</ul>
+</li>
+<li><p>innodb_thread_concurrency，设置innodb线程的并发数，默认值为0表示不被限制，若要设置则与服务器的CPU核心数相同或是CPU的核心数的2倍。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://everyseptember.github.io/2019/07/24/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" data-id="ckp7o8tj4001110mw3iq4edm3" data-title="MySQL调优-参数配置" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" rel="tag">参数配置</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          设计模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/23/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">MySQL调优-分库分表</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">Java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" rel="tag">Java核心技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E5%9F%BA%E7%A1%80/" rel="tag">MySQL基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" rel="tag">MySQL存储引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSM/" rel="tag">SSM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-MVC/" rel="tag">Spring MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Web/" rel="tag">Spring Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot%E7%AC%94%E8%AE%B0/" rel="tag">Springboot笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/" rel="tag">Springboot零散笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/" rel="tag">分库分表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" rel="tag">参数配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%88%E5%B8%8C/" rel="tag">哈希</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE/" rel="tag">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A0%86/" rel="tag">堆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/" rel="tag">字符串匹配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/" rel="tag">开发模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%85%A2SQL%E6%97%A5%E5%BF%97/" rel="tag">慢SQL日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" rel="tag">执行计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" rel="tag">散列表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B4%A2%E5%BC%95/" rel="tag">索引</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" rel="tag">红黑树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag">线性表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag">非线性表</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Freemarker/" style="font-size: 10px;">Freemarker</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" style="font-size: 11.67px;">Java核心技术</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 18.33px;">MySQL</a> <a href="/tags/MySQL%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">MySQL基础</a> <a href="/tags/MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" style="font-size: 10px;">MySQL存储引擎</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SSM/" style="font-size: 16.67px;">SSM</a> <a href="/tags/Spring/" style="font-size: 11.67px;">Spring</a> <a href="/tags/Spring-MVC/" style="font-size: 11.67px;">Spring MVC</a> <a href="/tags/Spring-Web/" style="font-size: 10px;">Spring Web</a> <a href="/tags/Springboot%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">Springboot笔记</a> <a href="/tags/Springboot%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/" style="font-size: 20px;">Springboot零散笔记</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 13.33px;">二叉树</a> <a href="/tags/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/" style="font-size: 10px;">分库分表</a> <a href="/tags/%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">参数配置</a> <a href="/tags/%E5%93%88%E5%B8%8C/" style="font-size: 10px;">哈希</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 10px;">基础知识</a> <a href="/tags/%E5%A0%86/" style="font-size: 10px;">堆</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/" style="font-size: 10px;">字符串匹配</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">开发模式</a> <a href="/tags/%E6%85%A2SQL%E6%97%A5%E5%BF%97/" style="font-size: 10px;">慢SQL日志</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">执行计划</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">排序</a> <a href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" style="font-size: 10px;">散列表</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 20px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18.33px;">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 13.33px;">架构</a> <a href="/tags/%E6%A0%91/" style="font-size: 13.33px;">树</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 16.67px;">框架</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%B4%A2%E5%BC%95/" style="font-size: 10px;">索引</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 10px;">红黑树</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/" style="font-size: 10px;">线性表</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.67px;">运维</a> <a href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8/" style="font-size: 15px;">非线性表</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/28/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/CAP/">CAP</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/%E6%9E%B6%E6%9E%84-Spring%20Web%E4%B8%8ESpring%20MVC/">架构-Spring Web与Spring MVC</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/%E6%9E%B6%E6%9E%84-Spring/">架构-Spring</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/08/%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/">架构-Java基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 lu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

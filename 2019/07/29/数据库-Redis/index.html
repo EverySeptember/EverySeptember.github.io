@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Redis | 这里是lu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="RedisRedis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。 常用基本配置项默认配置文件：根目录下redis.conf文件； 常用redis基本配置项： 123456789101112# 是否后台运行，共两个值yes|no，默认值为nodaemonize yes# 启动端口，默认值为6379po">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis">
+<meta property="og:url" content="http://everyseptember.github.io/2019/07/29/%E6%95%B0%E6%8D%AE%E5%BA%93-Redis/index.html">
+<meta property="og:site_name" content="这里是lu">
+<meta property="og:description" content="RedisRedis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。 常用基本配置项默认配置文件：根目录下redis.conf文件； 常用redis基本配置项： 123456789101112# 是否后台运行，共两个值yes|no，默认值为nodaemonize yes# 启动端口，默认值为6379po">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-29T13:06:05.000Z">
+<meta property="article:modified_time" content="2021-05-28T01:53:34.523Z">
+<meta property="article:author" content="lu">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="这里是lu" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">这里是lu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://everyseptember.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数据库-Redis" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/29/%E6%95%B0%E6%8D%AE%E5%BA%93-Redis/" class="article-date">
+  <time class="dt-published" datetime="2019-07-29T13:06:05.000Z" itemprop="datePublished">2019-07-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Redis
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p>Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。</p>
+<h2 id="常用基本配置项"><a href="#常用基本配置项" class="headerlink" title="常用基本配置项"></a>常用基本配置项</h2><p>默认配置文件：根目录下redis.conf文件；</p>
+<p>常用redis基本配置项：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 是否后台运行，共两个值yes|no，默认值为no</span><br><span class="line">daemonize yes</span><br><span class="line"># 启动端口，默认值为6379</span><br><span class="line">port 6379</span><br><span class="line"># 指定日志文件地址</span><br><span class="line">logfile ./redis.log</span><br><span class="line"># 数据库总量</span><br><span class="line">databases 256</span><br><span class="line"># 数据文件存放目录</span><br><span class="line">dir ./data/</span><br><span class="line"># 密码</span><br><span class="line">requirepass 123456</span><br></pre></td></tr></table></figure>
+
+<h2 id="通用指令"><a href="#通用指令" class="headerlink" title="通用指令"></a>通用指令</h2><h3 id="启停"><a href="#启停" class="headerlink" title="启停"></a>启停</h3><ul>
+<li>启动服务：<code>./src/redis-server [自定义配置文件地址]</code></li>
+<li>客户端连接：<code>./src/redis-cli [-h host] [-p port] [-a password]</code> 默认连接本地6379端口</li>
+<li>服务器关闭：<code>./src/redis-cli shutdown [save|nosave]</code>关闭时是否持久化当前数据，默认nosave</li>
+</ul>
+<h3 id="通用指令-1"><a href="#通用指令-1" class="headerlink" title="通用指令"></a>通用指令</h3><ul>
+<li>选择数据库：<code>select 数据库号</code></li>
+<li>存入一组值：<code>set key value</code></li>
+<li>查询一组值：<code>get key</code>，返回值为当前key对应的value</li>
+<li>根据正则表达式查询复合条件的key：<code>keys pattern</code>，<a target="_blank" rel="noopener" href="http://www.redis.cn/commands/keys.html">支持的正则表达模式</a>；是一个阻塞的指令，不要在生产环境使用</li>
+<li>查询当前数据库有多少数据：<code>dbsize</code></li>
+<li>查询目标key是否存在：<code>exists key</code>，返回值1存在，0不存在</li>
+<li>删除一条数据：<code>del key</code></li>
+<li>对目标key设置有效期：<code>expire key seconds</code></li>
+<li>查询目标key的剩余有效时间：<code>ttl key</code></li>
+</ul>
+<h3 id="其他指令"><a href="#其他指令" class="headerlink" title="其他指令"></a>其他指令</h3><ul>
+<li>清空当前数据库：<code>flushdb</code></li>
+<li>清空所有数据库：<code>flushall</code></li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="Keys"><a href="#Keys" class="headerlink" title="Keys"></a>Keys</h3><p>Redis key值是二进制安全的，这意味着可以用任何二进制序列作为key值，从形如”foo”的简单字符串到一个JPEG文件的内容都可以。空字符串也是有效key值。</p>
+<h3 id="value"><a href="#value" class="headerlink" title="value"></a>value</h3><p>以下为value支持的五种数据类型及其在redis内部存储的编码结构</p>
+<ul>
+<li>字符串类型<code>String</code><ul>
+<li>int 编码：保存long 型的64位有符号整数</li>
+<li>embstr 编码：保存长度小于44字节的字符串</li>
+<li>raw 编码：保存长度大于44字节的字符串</li>
+</ul>
+</li>
+<li>Hash类型<code>Hash</code></li>
+<li>列表类型<code>List</code></li>
+<li>集合类型<code>Set</code></li>
+<li>有序集合类型<code>ZSet</code></li>
+</ul>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>String最大支持512M，实际生产中不建议存储超过100kb</p>
+<h4 id="字符串常用指令"><a href="#字符串常用指令" class="headerlink" title="字符串常用指令"></a>字符串常用指令</h4><ul>
+<li>一次设置多个K-V：<code>mset [key1 value1] [key2 value2] [...]</code></li>
+<li>一次取出多个值：<code>mget [key1] [key2] [...]</code></li>
+<li>目标值自增/自减1：<code>incr/decr key</code></li>
+<li>目标值自增/自减任意值：<code>incrby/decrby key num</code></li>
+</ul>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><p>适合存储结构化数据</p>
+<h4 id="Hash指令"><a href="#Hash指令" class="headerlink" title="Hash指令"></a>Hash指令</h4><ul>
+<li>设置单个值：<code>hset key filed value</code></li>
+<li>获取单个值：<code>hget key filed</code></li>
+<li>设置/获取多个值：<code>hmset key filed value [filed value]</code> / <code>hmget key [key]</code></li>
+<li>获取所有值：<code>hgetall key</code>；返回值：单数行为filed，偶数行为对应的value</li>
+<li>删除目标值：<code>hdel key filed</code></li>
+<li>检查是否存在：<code>hexists key filed</code>；返回值：1存在，0不存在</li>
+<li>目标key中字段的数量：<code>hlen key</code></li>
+</ul>
+<h4 id="与String的存储优劣对比"><a href="#与String的存储优劣对比" class="headerlink" title="与String的存储优劣对比"></a>与String的存储优劣对比</h4><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">优点</th>
+<th align="left">缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">String-JSON序列化</td>
+<td align="left">编程简单、节约内存</td>
+<td align="left">需要额外的序列化开销、无法实现部分属性更新</td>
+</tr>
+<tr>
+<td align="left">Hash</td>
+<td align="left">直观、可实现部分属性更新</td>
+<td align="left">多层嵌套困难、序列化/反序列化编程麻烦</td>
+</tr>
+</tbody></table>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>列表是简单的字符串列表，按照插入顺序排序</p>
+<h4 id="List指令"><a href="#List指令" class="headerlink" title="List指令"></a>List指令</h4><ul>
+<li>在列表左/右侧插入元素：<code>lpush/rpush key value [value ...]</code></li>
+<li>从列表的左/右侧弹出元素：<code>lpop/rpop key</code></li>
+<li>获取列表长度：<code>llen key</code></li>
+<li>获取列表子集：<code>lrange startpoint endpoint</code>；当endpoint为负值时，从右侧倒序查找位置</li>
+</ul>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>Redis中的Set是字符串类型的无序且唯一的集合。Set是通过哈希表实现的，所以添加、查找、删除的速度都是很快的。</p>
+<h4 id="Set指令"><a href="#Set指令" class="headerlink" title="Set指令"></a>Set指令</h4><ul>
+<li>新增/移除元素：<code>sadd/srem key element</code></li>
+<li>随机获取/弹出元素：<code>srandmemeber/spop key [count]</code></li>
+<li>查看所有元素：<code>smembers key</code></li>
+<li>计算元素的数量：<code>scard key</code></li>
+<li>集合计算<ul>
+<li>差集：<code>sdiff key [key]</code></li>
+<li>交集：<code>sinter key [key]</code></li>
+<li>并集：<code>sunion key [key]</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="ZSet"><a href="#ZSet" class="headerlink" title="ZSet"></a>ZSet</h3><p>ZSet是字符串类型的有序且唯一的集合。在ZSet中，除了元素之外，还有一个分数值，ZSet会按照分数值对元素进行从小到大才排序。</p>
+<h4 id="ZSet指令"><a href="#ZSet指令" class="headerlink" title="ZSet指令"></a>ZSet指令</h4><ul>
+<li>添加一个元素：<code>zadd key score member [score member...]</code></li>
+<li>移除一个元素：<code>zrem key member</code></li>
+<li>查看一个元素的分数：<code>zscore key member</code></li>
+<li>查看元素的在集合中的位置：<code>zrank key member</code></li>
+<li>查看集合中的元素数量：<code>zcard key</code></li>
+<li>查看集合中的元素子集：<code>zrange key start end [withscores]</code>；使用可选参数withscores同时查询分数</li>
+<li>查看目标分数区间内的元素数量：<code>zcount key min max</code></li>
+<li>查看目标分数区间内的元素详细信息：<code>zrangebyscore key min max [withscores]</code></li>
+</ul>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>首先需要打开远程访问权限，在conf文件中添加配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind 允许远程访问的host地址</span><br></pre></td></tr></table></figure>
+
+<h3 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h3><p>Jedis是Java语言开发的Redis客户端开发工具包，对Redis指令进行了简单的封装。</p>
+<p>添加引用：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>新建Jedis连接：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;host&quot;</span>, <span class="string">&quot;port&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Spring使用JedisPool连接池"><a href="#Spring使用JedisPool连接池" class="headerlink" title="Spring使用JedisPool连接池"></a>Spring使用JedisPool连接池</h4><h5 id="Spring-Data-Redis配置选项"><a href="#Spring-Data-Redis配置选项" class="headerlink" title="Spring-Data-Redis配置选项"></a>Spring-Data-Redis配置选项</h5><p>Maven引用：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.9.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.8.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-beanutils<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-beanutils<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>applicationContext.xml：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 连接池配置类--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;poolConfig&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">&quot;redis.clients.jedis.JedisPoolConfig&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:maxTotal</span>=<span class="string">&quot;100&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:maxIdle</span>=<span class="string">&quot;50&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:minIdle</span>=<span class="string">&quot;10&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:maxWaitMillis</span>=<span class="string">&quot;1000&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:blockWhenExhausted</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:testOnBorrow</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:testOnReturn</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:testOnCreate</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Jedis连接配置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;jedisConnFactory&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">&quot;org.springframework.data.redis.connection.jedis.JedisConnectionFactory&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:usePool</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:hostName</span>=<span class="string">&quot;39.104.126.40&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:port</span>=<span class="string">&quot;6379&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:password</span>=<span class="string">&quot;123456&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:database</span>=<span class="string">&quot;0&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:poolConfig-ref</span>=<span class="string">&quot;poolConfig&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- RedisTemplate配置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;redisTemplate&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">&quot;org.springframework.data.redis.core.RedisTemplate&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">p:connectionFactory-ref</span>=<span class="string">&quot;jedisConnFactory&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- SpringDataRedis默认采用JDK二进制序列化工具 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 采用以下设置，将key和value分别用String方式进行序列化，提高Redis中的数据可读性 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;keySerializer&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.data.redis.serializer.StringRedisSerializer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;valueSerializer&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;hashKeySerializer&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.data.redis.serializer.StringRedisSerializer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;hashValueSerializer&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="RedisTemplate模板对象"><a href="#RedisTemplate模板对象" class="headerlink" title="RedisTemplate模板对象"></a>RedisTemplate模板对象</h5><ul>
+<li>Spring使用RedisTemplate来进行Redis操作</li>
+<li>使用<code>RedisTemplate.opsFor*()</code>函数来获取各Redis数据类型的操作对象</li>
+<li>注入好RedisTemplate后不再需要管理Jedis的开启与销毁，可直接使用</li>
+</ul>
+<h5 id="Java对象在Redis中的序列化与反序列化"><a href="#Java对象在Redis中的序列化与反序列化" class="headerlink" title="Java对象在Redis中的序列化与反序列化"></a>Java对象在Redis中的序列化与反序列化</h5><ul>
+<li>SpringDataRedis默认采用JDK二进制序列化工具，在开发过程中可能会影响可读性</li>
+<li>分别配置<code>*KeySerializer</code>和<code>*ValueSerializer</code>实现对Key和Value的序列化</li>
+<li>当希望将对象以Json的形式存储的时候，SpringDataRedis底层默认使用Jackson，需要添加引用并使用<code>GenericJackson2JsonRedisSerializer</code>类进行序列化与反序列化</li>
+</ul>
+<h3 id="声明式缓存"><a href="#声明式缓存" class="headerlink" title="声明式缓存"></a>声明式缓存</h3><p>使用注解的方式对当前应用进行“非侵入式”缓存扩展</p>
+<h4 id="SpringCache"><a href="#SpringCache" class="headerlink" title="SpringCache"></a>SpringCache</h4><p>SpringCache是Spring生态中的一员，用于对主流缓存组件进行一致性集成。通过暴露统一的接口，方便对不同组件进行随意切换。</p>
+<p>SpringCache支持多种缓存，包括Redis。</p>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><ol>
+<li><p>添加Maven依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-cache<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>在入口类添加<code>@EnableCaching</code>注解，spring cache会根据底层JAR包依赖决定使用何种缓存</p>
+</li>
+<li><p>在application.yml中添加Redis服务器和Jedis连接池配置</p>
+</li>
+<li><p>在方法中使用</p>
+<ol>
+<li><p>在具体执行函数上添加<code>@Cacheable</code>注解，添加value、key参数（key以<code>#函数形参</code>的方式获取传入函数的数据），参数在存入Redis 的时候会以<code>value::#key</code>的形式作为Redis key保存到内存中</p>
+</li>
+<li><p>经过<code>@Cacheable</code>注解的函数在执行前会首先检查缓存，如果存在对应的key则直接取出缓存而不执行方法</p>
+</li>
+<li><p><code>@Cacheable</code>注解的方法返回值必须实现<code>Serializable</code>接口，不然会出现序列化错误</p>
+</li>
+<li><p>如果需要使用其他序列化方法，则需在入口类添加对应Bean进行配置，参考如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RedisCacheConfiguration <span class="title">redisCacheConfiguration</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig();</span><br><span class="line">    redisCacheConfiguration = redisCacheConfiguration.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(<span class="keyword">new</span> GenericJackson2JsonRedisSerializer()));</span><br><span class="line">    <span class="keyword">return</span> redisCacheConfiguration;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>案例使用Json序列化方式，需引入Jackson依赖</p>
+</li>
+<li><p><code>@CachePut</code>注解，不管是否有该缓存，总是会创建或更新Redis，多用于新建或更新函数</p>
+</li>
+<li><p><code>@CacheEvict</code>注解，移除目标缓存</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><p>采用快照的方式进行持久化。使用Redis配置文件进行配置</p>
+<p>常用配置项：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">save 60 1 # 自动保存策略，每60秒有1个key放生变化则自动保存</span><br><span class="line">dbfilename 文件名 # 保存的rdb文件名</span><br><span class="line">stop-writes-on-bgsave-error yes # 发生错误时中断写入，建议开启</span><br><span class="line">rdbcompression yes # 数据文件压缩，建议开启</span><br><span class="line">rdbchecksum yes # 开启crc64错误校验，建议开启</span><br></pre></td></tr></table></figure>
+
+<h3 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h3><p>采用日志的方式。</p>
+<h4 id="AOF的追加（fsync）策略"><a href="#AOF的追加（fsync）策略" class="headerlink" title="AOF的追加（fsync）策略"></a>AOF的追加（fsync）策略</h4><ul>
+<li>always - 随时写入（不推荐）</li>
+<li>everysec - 每秒写入（推荐）</li>
+<li>no - 依赖os规则吸入（不推荐）</li>
+</ul>
+<p>常用配置项：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes # 开启aof</span><br><span class="line">appendfilename aoflog.aof # aof文件名</span><br><span class="line">appendfsync everysec # aof追加策略</span><br><span class="line">no-appendfsync-on-rewrite yes # 重写过程中是否继续写入日志</span><br><span class="line">auto-aof-rewrite-percentage 100 # 触发重写条件：相较于上次文件增加的大小比例；默认100%</span><br><span class="line">auto-aof-rewrite-min-size 64mb # 触发重写的最小文件大小</span><br></pre></td></tr></table></figure>
+
+<h2 id="高可用和集群"><a href="#高可用和集群" class="headerlink" title="高可用和集群"></a>高可用和集群</h2><h3 id="Redis主从复制"><a href="#Redis主从复制" class="headerlink" title="Redis主从复制"></a>Redis主从复制</h3><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul>
+<li>一个Master可以有多个Slave</li>
+<li>一个Slave只能有一个Master</li>
+<li>数据流是单向的：Master到Slave</li>
+<li> 主从复制底层依赖于RDB方式</li>
+</ul>
+<h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><ul>
+<li><p>启动多个节点</p>
+</li>
+<li><p>在从节点配置文件中添加配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">slaveof 127.0.0.1 6666 # 主节点地址端口</span><br><span class="line">slave-read-only yes # 是否只读</span><br><span class="line">masterauth 123456 # 主节点密码</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h3><p>Redis Sentinel是一个分布式架构，包含若干个Sentinel节点和Redis数据节点，每个Sentinel节点会对数据节点和其他Sentinel节点做监控，当发现节点不可达时，会对节点做下线标识。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="Redis开发规范"><a href="#Redis开发规范" class="headerlink" title="Redis开发规范"></a>Redis开发规范</h3><h4 id="Key的设计"><a href="#Key的设计" class="headerlink" title="Key的设计"></a>Key的设计</h4><ul>
+<li>可读性，尽量按照规则：<code>业务名:表名:ID</code></li>
+<li>简洁性：建议key不要超过39个字节</li>
+<li>不要包含特殊符号</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://everyseptember.github.io/2019/07/29/%E6%95%B0%E6%8D%AE%E5%BA%93-Redis/" data-id="ckp7o8tje001c10mw5uaxh24n" data-title="Redis" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E5%9B%BE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          数据结构-非线性表-图
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">设计模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">Java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" rel="tag">Java核心技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E5%9F%BA%E7%A1%80/" rel="tag">MySQL基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" rel="tag">MySQL存储引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSM/" rel="tag">SSM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-MVC/" rel="tag">Spring MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Web/" rel="tag">Spring Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot%E7%AC%94%E8%AE%B0/" rel="tag">Springboot笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/" rel="tag">Springboot零散笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/" rel="tag">分库分表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" rel="tag">参数配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%88%E5%B8%8C/" rel="tag">哈希</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE/" rel="tag">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A0%86/" rel="tag">堆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/" rel="tag">字符串匹配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/" rel="tag">开发模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%85%A2SQL%E6%97%A5%E5%BF%97/" rel="tag">慢SQL日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" rel="tag">执行计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" rel="tag">散列表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B4%A2%E5%BC%95/" rel="tag">索引</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" rel="tag">红黑树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag">线性表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag">非线性表</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Freemarker/" style="font-size: 10px;">Freemarker</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" style="font-size: 11.67px;">Java核心技术</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 18.33px;">MySQL</a> <a href="/tags/MySQL%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">MySQL基础</a> <a href="/tags/MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" style="font-size: 10px;">MySQL存储引擎</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SSM/" style="font-size: 16.67px;">SSM</a> <a href="/tags/Spring/" style="font-size: 11.67px;">Spring</a> <a href="/tags/Spring-MVC/" style="font-size: 11.67px;">Spring MVC</a> <a href="/tags/Spring-Web/" style="font-size: 10px;">Spring Web</a> <a href="/tags/Springboot%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">Springboot笔记</a> <a href="/tags/Springboot%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/" style="font-size: 20px;">Springboot零散笔记</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 13.33px;">二叉树</a> <a href="/tags/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/" style="font-size: 10px;">分库分表</a> <a href="/tags/%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">参数配置</a> <a href="/tags/%E5%93%88%E5%B8%8C/" style="font-size: 10px;">哈希</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 10px;">基础知识</a> <a href="/tags/%E5%A0%86/" style="font-size: 10px;">堆</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/" style="font-size: 10px;">字符串匹配</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">开发模式</a> <a href="/tags/%E6%85%A2SQL%E6%97%A5%E5%BF%97/" style="font-size: 10px;">慢SQL日志</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">执行计划</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">排序</a> <a href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" style="font-size: 10px;">散列表</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 20px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18.33px;">数据结构</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 13.33px;">架构</a> <a href="/tags/%E6%A0%91/" style="font-size: 13.33px;">树</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 16.67px;">框架</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%B4%A2%E5%BC%95/" style="font-size: 10px;">索引</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 10px;">红黑树</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/" style="font-size: 10px;">线性表</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.67px;">运维</a> <a href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8/" style="font-size: 15px;">非线性表</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/28/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/CAP/">CAP</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/%E6%9E%B6%E6%9E%84-Spring%20Web%E4%B8%8ESpring%20MVC/">架构-Spring Web与Spring MVC</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/%E6%9E%B6%E6%9E%84-Spring/">架构-Spring</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/08/%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/">架构-Java基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 lu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
