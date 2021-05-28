@@ -4,24 +4,24 @@ date: 2019-3-19 19:24:27
 tags: [架构,SSM,Freemarker]
 ---
 
-### Freemarker
+# SSM开发实战4-Freemarker
 
-#### 模板引擎
+## 模板引擎
 
 - JSP
 - Freemarker
 - Beetl
 - Thymeleaf
 
-#### Freemarker
+## Freemarker
 
 - 免费开源的模板引擎
 - Freemarker脚本为FTL（**F**reemarker **T**emplate **L**anguage）
 - 提供了大量内建函数简化开发
 
-#### 与Spring MVC集成
+## 与Spring MVC集成
 
-1. ##### 引入依赖
+1. ### 引入依赖
 
    ```xml
    <dependency>
@@ -36,7 +36,7 @@ tags: [架构,SSM,Freemarker]
    </dependency>
    ```
 
-2. ##### 修改applicationContext.xml
+2. ### 修改applicationContext.xml
 
    添加如下内容
 
@@ -54,17 +54,17 @@ tags: [架构,SSM,Freemarker]
    </bean>
    ```
 
-3. ##### 在ftl目录中新建ftl文件
+3. ### 在ftl目录中新建ftl文件
 
-#### 基本语法
+## 基本语法
 
-- ##### 取值
+- ### 取值
 
   - ${属性名}
   - ${属性名!默认值}
   - ${属性名?string('')}-格式化输出
 
-- ##### if分支判断
+- ### if分支判断
 
   ```ftl
   <!--??表示不为空-->
@@ -79,7 +79,7 @@ tags: [架构,SSM,Freemarker]
   </#if>
   ```
 
-- ##### 循环
+- ### 循环
 
   ```ftl
   <#list users as user>
@@ -88,7 +88,7 @@ tags: [架构,SSM,Freemarker]
   </#list>
   ```
 
-- ##### 内建函数
+- ### 内建函数
 
   使用方法：参数?内建函数名称
 
