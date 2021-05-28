@@ -1,7 +1,7 @@
 ---
 title: Java核心技术-基础
 date: 2019-3-5 19:23:57
-tags: Java核心技术
+tags: Java
 ---
 
 # Exception 和 Error

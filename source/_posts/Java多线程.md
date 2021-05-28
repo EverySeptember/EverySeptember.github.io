@@ -1,7 +1,7 @@
 ---
 title: Java多线程
 date: 2019-8-14 11:16:23
-tags: Java多线程
+tags: [Java]
 ---
 
 # Java多线程

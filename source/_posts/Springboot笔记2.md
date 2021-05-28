@@ -1,7 +1,7 @@
 ---
 title: Springboot笔记2
 date: 2019-01-10 19:19:17
-tags: Springboot零散笔记
+tags: Springboot
 ---
 
 ## 核心特性
@@ -90,7 +90,7 @@ tags: Springboot零散笔记
 
 ### Spring Web MVC应用
 
-#### ​Web MVC视图
+#### Web MVC视图
 
 - ViewResolver
 - View

@@ -1,7 +1,7 @@
 ---
 title: Redis
 date: 2019-7-29 21:06:05
-tags: [数据库, Redis]
+tags: [NoSQL, Redis]
 ---
 
 # Redis

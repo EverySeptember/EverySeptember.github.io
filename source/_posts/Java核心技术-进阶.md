@@ -1,7 +1,7 @@
 ---
 title: Java核心技术-进阶
 date: 2019-3-30 20:45:11
-tags: Java核心技术
+tags: Java
 ---
 
 ### 设计模式

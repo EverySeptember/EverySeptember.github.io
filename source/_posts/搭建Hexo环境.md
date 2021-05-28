@@ -1,7 +1,7 @@
 ---
 title: 云服务搭建Hexo
 date: 2018-05-01
-tags: 运维
+tags: [运维,Hexo]
 ---
 
 ### 安装配置Hexo

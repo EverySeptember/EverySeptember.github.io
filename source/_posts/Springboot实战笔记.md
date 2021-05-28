@@ -1,7 +1,7 @@
 ---
 title: Springboot实战笔记
 date: 2019-1-14 18:49:49
-tags: Springboot零散笔记
+tags: Springboot
 ---
 
 ## Spring Boot常用配置

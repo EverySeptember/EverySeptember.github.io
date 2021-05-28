@@ -1,7 +1,7 @@
 ---
 title: Springboot笔记
 date: 2019-01-05 13:39:44
-tags: Springboot笔记
+tags: Springboot
 ---
 
 ### Spring Data

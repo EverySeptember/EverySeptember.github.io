@@ -1,7 +1,7 @@
 ---
 title: Springboot实战笔记6
 date: 2019-1-26 09:26:29
-tags: Springboot零散笔记
+tags: Springboot
 ---
 
 ## 部署、打包与发布	

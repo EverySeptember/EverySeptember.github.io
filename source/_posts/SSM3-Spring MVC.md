@@ -1,7 +1,7 @@
 ---
 title: SSM开发实战3-Spring MVC
 date: 2019-3-19 19:24:27
-tags: [框架,SSM,Spring MVC]
+tags: [架构,SSM,Spring MVC]
 ---
 
 ### Spring MVC

@@ -1,7 +1,7 @@
 ---
 title: SSM开发实战5-SSM
 date: 2019-3-19 19:24:27
-tags: [框架,SSM]
+tags: [架构,SSM]
 ---
 
 ### SSM整合

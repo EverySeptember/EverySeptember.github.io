@@ -1,7 +1,7 @@
 ---
 title: Springboot实战笔记2
 date: 2019-1-16 19:20:59
-tags: Springboot零散笔记
+tags: Springboot
 ---
 
 ## Thymeleaf模板引擎入门

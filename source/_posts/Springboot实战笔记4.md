@@ -1,7 +1,7 @@
 ---
 title: Springboot实战笔记4
 date: 2019-1-24 19:41:09
-tags: Springboot零散笔记
+tags: Springboot
 ---
 
 ## Spring Data与JPA

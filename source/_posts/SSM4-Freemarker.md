@@ -1,7 +1,7 @@
 ---
 title: SSM开发实战4-Freemarker
 date: 2019-3-19 19:24:27
-tags: [框架,SSM,Freemarker]
+tags: [架构,SSM,Freemarker]
 ---
 
 ### Freemarker

@@ -1,7 +1,7 @@
 ---
 title: Springboot实战笔记5
 date: 2019-01-24 19:43:48
-tags: Springboot零散笔记
+tags: Springboot
 ---
 
 ## MyBatis

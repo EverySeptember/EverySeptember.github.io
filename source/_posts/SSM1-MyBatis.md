@@ -1,7 +1,7 @@
 ---
 title: SSM开发实战1-MyBatis
 date: 2019-3-14 19:24:27
-tags: [框架,SSM,MyBatis]
+tags: [架构,SSM,MyBatis]
 ---
 
 ## SSM-MyBatis

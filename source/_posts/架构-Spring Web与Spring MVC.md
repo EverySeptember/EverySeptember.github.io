@@ -1,7 +1,7 @@
 ---
 title: 架构-Spring Web与Spring MVC
 date: 2020-06-09 16:20:12
-tags: [架构,Spring Web,Spring MVC]
+tags: [架构,Spring,Spring Web,Spring MVC]
 ---
 
 # Spring Web
