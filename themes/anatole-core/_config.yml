@@ -17,7 +17,7 @@ github: https://github.com/EverySeptember
   
 # Valine 评论，如何配置请看官网 https://valine.js.org
 valine:
-  enable: true # if you want use valine, please set enable: true
+  enable: false # if you want use valine, please set enable: true
   appid: 
   appkey: 
   notify: false # true/false:mail notify !!!Test,Caution. https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE
@@ -26,6 +26,7 @@ valine:
   placeholder: 念念不忘，必有回响... # comment box placeholder
   serverURLs: 
 
+comments: false
 # 百度统计设置
 # 请访问 https://tongji.baidu.com/ 
 # 获取统计JS代码放入 anatole-core/source/js/baidu-tongji.js
