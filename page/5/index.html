@@ -71,74 +71,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-搭建Hexo环境" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/04/30/%E6%90%AD%E5%BB%BAHexo%E7%8E%AF%E5%A2%83/" class="article-date">
-  <time class="dt-published" datetime="2018-04-30T16:00:00.000Z" itemprop="datePublished">2018-05-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/04/30/%E6%90%AD%E5%BB%BAHexo%E7%8E%AF%E5%A2%83/">云服务搭建Hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="安装配置Hexo"><a href="#安装配置Hexo" class="headerlink" title="安装配置Hexo"></a>安装配置Hexo</h3><p>安装Nodejs</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">下载nodejs</span><br><span class="line">wget https://nodejs.org/dist/v8.11.2/node-v8.11.2-linux-x64.tar.xz</span><br><span class="line"></span><br><span class="line">解包</span><br><span class="line">tar xf node-v8.11.2-linux-x64.tar.xz</span><br><span class="line"></span><br><span class="line">建立软连接，此处源目录最好是绝对路径，否则可能会报错</span><br><span class="line">ln -s 源目录/node /usr/local/bin/node</span><br><span class="line">ln -s 源目录/npm /usr/local/bin/npm</span><br><span class="line">ln -s 源目录/npx /usr/local/bin/npx</span><br></pre></td></tr></table></figure>
-
-<p>安装Hexo</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line"></span><br><span class="line">建立软连接</span><br><span class="line">ln -s 源目录/hexo /usr/local/bin/hexo</span><br></pre></td></tr></table></figure>
-
-<h3 id="安装配置Nginx"><a href="#安装配置Nginx" class="headerlink" title="安装配置Nginx"></a>安装配置Nginx</h3><p>阿里云CentOS7自带yum源安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx -y</span><br></pre></td></tr></table></figure>
-
-<p>启动服务</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">手动启动</span><br><span class="line">systemctl start nginx</span><br><span class="line"></span><br><span class="line">设置开机自启</span><br><span class="line">systemctl enable nginx</span><br></pre></td></tr></table></figure>
-
-<p>开放阿里云80端口，访问测试</p>
-<p><img src="http://wx2.sinaimg.cn/large/be961c2aly1fs9yb2mhahj21cp0ggq3z.jpg"></p>
-<p>修改配置文件，打开/etc/nginx/nginx.conf，修改root以配置博客默认文件夹</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    ...</span><br><span class="line">    root         /usr/share/nginx/blog;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在/usr/share/nginx/下新建blog文件夹作为展示博客的根目录，重启Nginx</p>
-<h3 id="hexo配置"><a href="#hexo配置" class="headerlink" title="hexo配置"></a>hexo配置</h3><p>创建hexo目录，在文件夹中初始化hexo</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
-<p>修改hexo目录下_config.yml文件，修改public_dir使其指向Nginx下的博客目录，便可以直接生成到网站目录下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public_dir: /usr/share/nginx/blog</span><br></pre></td></tr></table></figure>
-
-<p>在hexo目录下生成博客，并访问测试</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://wx2.sinaimg.cn/large/be961c2aly1fs9yb5asiij21fu0u0wv0.jpg"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://everyseptember.github.io/2018/04/30/%E6%90%AD%E5%BB%BAHexo%E7%8E%AF%E5%A2%83/" data-id="ckp7o8tj2000w10mwaoou968n" data-title="云服务搭建Hexo" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-20180128云服务器安装Oracle" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2018/01/27/20180128%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85Oracle/" class="article-date">
@@ -319,7 +251,7 @@ ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://everyseptember.github.io/2018/01/27/20180128%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85Oracle/" data-id="ckp7o8ti9000010mw51agavmv" data-title="云服务器安装Oracle" class="article-share-link">分享</a>
+      <a data-url="http://everyseptember.github.io/2018/01/27/20180128%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85Oracle/" data-id="ckp7osn4600000es5btugdfwf" data-title="云服务器安装Oracle" class="article-share-link">分享</a>
       
       
       
@@ -383,10 +315,6 @@ ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
       <ul>
         
           <li>
-            <a href="/2021/05/28/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
             <a href="/2021/05/19/CAP/">CAP</a>
           </li>
         
@@ -400,6 +328,10 @@ ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
         
           <li>
             <a href="/2020/06/08/%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/">架构-Java基础</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/08/%E6%9E%B6%E6%9E%84-Java%E5%9F%BA%E7%A1%80/">架构-Java基础</a>
           </li>
         
       </ul>
