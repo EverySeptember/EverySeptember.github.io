@@ -4,23 +4,22 @@ date: 2019-3-19 19:24:27
 tags: [架构,SSM,Spring MVC]
 ---
 
-# SSM开发实战3-Spring MVC
 
-### MVC
+## MVC
 
 - **M**odel，模型
 - **Vi**ew，视图
 - **C**ontroller，控制器
 
-### Spring MVC
+## Spring MVC
 
 - Spring体系的轻量级Web MVC框架
 - 核心是Controller控制器，职责是处理请求，产生响应
 - 基于IOC容器运行，所有对象被IOC管理
 
-## 配置
+# 配置
 
-### 1.引入依赖
+## 1.引入依赖
 
 ```xml
 <dependency>
@@ -30,7 +29,7 @@ tags: [架构,SSM,Spring MVC]
 </dependency>
 ```
 
-### 2.配置web.xml
+## 2.配置web.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -64,7 +63,7 @@ tags: [架构,SSM,Spring MVC]
 </web-app>
 ```
 
-### 3.定义applicationContext.xml
+## 3.定义applicationContext.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -91,7 +90,7 @@ tags: [架构,SSM,Spring MVC]
 </beans>
 ```
 
-## Spring URL Mapping
+# Spring URL Mapping
 
 注解形式
 
@@ -99,7 +98,7 @@ tags: [架构,SSM,Spring MVC]
 - PostMapping，Post请求绑定
 - GetMapping，Get请求绑定
 
-## Controller接收请求数据
+# Controller接收请求数据
 
 - 直接使用Controller方法参数接收
 
@@ -119,7 +118,7 @@ tags: [架构,SSM,Spring MVC]
   }
   ```
 
-## 中文乱码的配置解决
+# 中文乱码的配置解决
 
 - Get请求乱码：在Tomcat server.xml的Connector标签中添加属性URIEncoding
 
@@ -166,7 +165,7 @@ tags: [架构,SSM,Spring MVC]
   </mvc:annotation-driven>
   ```
 
-## 响应的处理方式
+# 响应的处理方式
 
 - @ResponseBody：产生相应文本
 

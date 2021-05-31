@@ -3,13 +3,12 @@ title: Springboot实战笔记5
 date: 2019-01-24 19:43:48
 tags: Springboot
 ---
-# Springboot实战笔记5
 
-## MyBatis
+# MyBatis
 
 MyBatis是一款优秀的持久层框架，它支持定制化SQL、存储过程以及高级映射。MyBatis避免了几乎所有的JDBC代码和手动设置参数以及获取结果集。MyBatis可以使用简单的XML或者注解来映射原生信息，将接口的POJOs（Plain Old Java Objects，普通的Java对象）映射成数据库中的记录。
 
-### 使用步骤
+## 使用步骤
 
 1. 引入依赖
 
@@ -62,7 +61,7 @@ MyBatis是一款优秀的持久层框架，它支持定制化SQL、存储过程�
 
    4. 在SpringBoot入口类中添加`@MapperScan("com.lu.springbootmybatis.mapper")`注解，指向mapper接口类的路径，使其在项目启动时被加载，从而项目启动时MyBatis会实现接口类中的方法
 
-### 查询
+## 查询
 
 - xml文件配置
 
@@ -96,11 +95,11 @@ MyBatis是一款优秀的持久层框架，它支持定制化SQL、存储过程�
   logging.level.com.lu.springbootmybatis.mapper=debug
   ```
 
-##### 动态查询
+#### 动态查询
 
 使用`<if test=""></if>`标签
 
-### 创建数据
+## 创建数据
 
 ```
 <insert id="insert" parameterType="com.lu.springbootmybatis.entity.Emp">
@@ -117,7 +116,7 @@ MyBatis是一款优秀的持久层框架，它支持定制化SQL、存储过程�
 - Mapper方法中参数必须是对应的实体类，SQL占位符名称用实体类属性名
 - 在insert标签中添加`<selectKey></selectKey>`获取最新插入的ID，order="AFTER"表示插入数据之后查询ID，select LAST_INSERT_ID()是mysql的查询方法
 
-### 删改
+## 删改
 
 分别使用update和delete标签即可
 

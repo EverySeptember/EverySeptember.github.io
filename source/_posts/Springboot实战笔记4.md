@@ -4,9 +4,8 @@ date: 2019-1-24 19:41:09
 tags: Springboot
 ---
 
-# Springboot实战笔记4.md
 
-## Spring Data与JPA
+# Spring Data与JPA
 
 Spring Data项目的目的是简化构建基于Spring框架应用的数据访问技术，包括关系型数据库、非关系型数据库、Map-Reduce框架、云数据服务等；
 
@@ -16,7 +15,7 @@ SpringData JPA是SpringData下的一个重要模块，负责关系型数据库�
 
 SpringData默认的JPA实现是Hibernate。
 
-##### Hibernate优缺点
+#### Hibernate优缺点
 
 - 优点
   - 面向对象
@@ -32,9 +31,9 @@ SpringData默认的JPA实现是Hibernate。
 
 
 
-### 基本操作CRUD
+## 基本操作CRUD
 
-1. ##### 在application.properties配置数据库连接配置
+1. #### 在application.properties配置数据库连接配置
 
    ```
    spring.datasource.driver-class-name=com.mysql.jdbc.Driver
@@ -45,7 +44,7 @@ SpringData默认的JPA实现是Hibernate。
    spring.jpa.show-sql=true
    ```
 
-2. ##### 创建实体类
+2. #### 创建实体类
 
    - 实体类使用`@Entity`和`@Table(name="")`注解，`@Entity`是实体类标识；SpringBoot启动时会加载这个类，`@Table`注解使表与表明一一对应
    - 字段使用`@Column(name="")`注解，如果属性名与字段名相同则可以省略
@@ -102,7 +101,7 @@ SpringData默认的JPA实现是Hibernate。
 
 
 
-### 自定义查询
+## 自定义查询
 
 SpringData JPA支持自定义查询方法，在Repository接口中按照规则命名抽象方法，不用提供实现。
 
@@ -110,7 +109,7 @@ SpringData JPA支持自定义查询方法，在Repository接口中按照规则�
 
 一般情况下不推荐使用，因为复杂查询使得命名方法过于复杂。
 
-#### JPQL
+### JPQL
 
 一种类SQL，在Repository接口中定义抽象方法，无命名规则，且使用`@Query`进行注解。
 
@@ -121,7 +120,7 @@ SpringData JPA支持自定义查询方法，在Repository接口中按照规则�
 public List<Dept> findByDname(String dname);
 ```
 
-##### 注意事项
+#### 注意事项
 
 - 大多数情况下将*替换为别名或直接使用表名
 - 表名改为实体类名
@@ -129,7 +128,7 @@ public List<Dept> findByDname(String dname);
 
 
 
-### 关系映射Mapping
+## 关系映射Mapping
 
 在实体表中，添加主子表对象（在主表中添加子表时使用对象替换外键属性），并使用`@ManyToOne`（或其他关联关系描述）、`@JoinColumn(value = "主表关联字段名")`对该对象进行描述。
 
@@ -143,9 +142,9 @@ public List<Emp> findAllByDeptno (Integer deptno);
 
 
 
-### 连接池与Druid
+## 连接池与Druid
 
-#### SpringBoot对连接池的支持
+### SpringBoot对连接池的支持
 
 - 目前SpringBoot默认支持的连接池有dbcp、dbcp2、tomcat、hikari
 - 数据库连接可以使用DataSource池进行自动配置
@@ -155,7 +154,7 @@ public List<Emp> findAllByDeptno (Integer deptno);
   3. Commons DBCP
   4. Commons DBCP2
 
-####  Druid
+###  Druid
 
 - Druid是阿里巴巴提供的数据库连接池，能够提供强大的监控和扩展功能
 
@@ -173,7 +172,7 @@ public List<Emp> findAllByDeptno (Integer deptno);
   </dependency>
   ```
 
-##### 程序中使用Druid提供的图形化分析工具
+#### 程序中使用Druid提供的图形化分析工具
 
 1. 在程序入口类中添加如下代码
 
@@ -217,7 +216,7 @@ public List<Emp> findAllByDeptno (Integer deptno);
 
 
 
-### 声明式事务
+## 声明式事务
 
 - 默认情况下，数据库的事务作用范围是在JpaRepository的CURD方法上。
 

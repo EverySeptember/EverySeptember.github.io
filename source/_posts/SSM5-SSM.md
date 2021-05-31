@@ -4,11 +4,10 @@ date: 2019-3-19 19:24:27
 tags: [架构,SSM]
 ---
 
-# SSM开发实战5-SSM
 
-## 步骤
+# 步骤
 
-1. ### 引入依赖
+1. ## 引入依赖
 
    ```xml
    <!--mybatis与spring整合插件-->
@@ -19,7 +18,7 @@ tags: [架构,SSM]
    </dependency>
    ```
 
-2. ### 修改spring核心配置文件applicationContext.xml
+2. ## 修改spring核心配置文件applicationContext.xml
 
    ```xml
    <!--mybatis整合配置-->
@@ -45,11 +44,11 @@ tags: [架构,SSM]
    </bean>
    ```
 
-3. ### 创建mybatis核心配置文件
+3. ## 创建mybatis核心配置文件
 
    mybatis-config中关于数据库连接的部分已经交由applicationContext.xml处理
 
-4. ### 创建mapper包下的mapper接口
+4. ## 创建mapper包下的mapper接口
 
    ```java
    public interface AreaMapper {
@@ -57,7 +56,7 @@ tags: [架构,SSM]
    }
    ```
 
-5. ### 创建对应的mappers下的mapper.xml配置文件
+5. ## 创建对应的mappers下的mapper.xml配置文件
 
    ```xml
    <!--namespace一定要指向mapper接口-->
@@ -71,7 +70,7 @@ tags: [架构,SSM]
 
 # MyBatis Plus
 
-## 特性
+# 特性
 
 - 无侵入-不修改mybatis代码
 - 损耗小
@@ -81,9 +80,9 @@ tags: [架构,SSM]
 - 内置主键生成策略
 - *默认在ssm环境执行
 
-## 步骤
+# 步骤
 
-1. ### 引入依赖
+1. ## 引入依赖
 
    ```xml
    <dependency>
@@ -93,7 +92,7 @@ tags: [架构,SSM]
    </dependency>
    ```
 
-2. ### 修改applicationContext.xml
+2. ## 修改applicationContext.xml
 
    修改关于sqlSessionFactory的创建类，无须做其他任何更改
 
@@ -103,26 +102,26 @@ tags: [架构,SSM]
    </bean>
    ```
 
-3. ### 修改实体类
+3. ## 修改实体类
 
    - 使用@TableName()注解类，使该类与表关联
    - 使用@TableId(type = )注解主键，标注主键与主键的生成方式
 
-4. ### 修改Mapper类
+4. ## 修改Mapper类
 
    Mapper类需继承`BaseMapper<T>`，T表示对应实体类
 
-5. ### 修改*mapper.xml
+5. ## 修改*mapper.xml
 
    mapper中仅需mapper标签，mybatis plus会实现绝大部分的方法
 
-## 条件查询
+# 条件查询
 
 [条件构造器](https://mybatis.plus/guide/wrapper.html)
 
-## 分页查询
+# 分页查询
 
-1. ### 在mybatis-config.xml中添加插件
+1. ## 在mybatis-config.xml中添加插件
 
    ```xml
    <plugins>

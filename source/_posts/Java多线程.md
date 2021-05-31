@@ -6,13 +6,13 @@ tags: [Java]
 
 # Java多线程
 
-## Java创建线程的三种方式
+# Java创建线程的三种方式
 
 - 继承Thread类
 - 实现Runnable接口
 - 实现Callable和Future接口
 
-### 优缺点对比
+## 优缺点对比
 
 |          | 继承Thread                   | 实现Runnable                           | 实现Callable                   |
 | -------- | ---------------------------- | -------------------------------------- | ------------------------------ |
@@ -20,11 +20,11 @@ tags: [Java]
 | 缺点     | 单继承，无法对线程组有效控制 | 无法对线程组有效控制，没有返回值、异常 | 执行效率相对较低，编程麻烦     |
 | 使用场景 | 不推荐使用                   | 简单的多线程程序                       | 企业级应用推荐使用             |
 
-## Synchronized多线程同步机制
+# Synchronized多线程同步机制
 
 synchronized关键字的作用就是利用一个特定的对象设置一个锁，在多线程并发访问的时候，同时只允许一个线程获得这个锁，执行特定的代码，执行后释放锁，继续由其它线程争抢。
 
-### Synchronized使用场景
+## Synchronized使用场景
 
 - synchronized代码块：任意对象即可
 
@@ -54,7 +54,7 @@ synchronized关键字的作用就是利用一个特定的对象设置一个锁�
 
   该方法适用于静态方法内
 
-## 线程的五种状态
+# 线程的五种状态
 
 - 新建（new）
 - 就绪（ready）
@@ -64,14 +64,14 @@ synchronized关键字的作用就是利用一个特定的对象设置一个锁�
 
 # JDK并发工具包
 
-## 线程池
+# 线程池
 
 - 重用存在的线程，减少对象创建、销毁的开销
 - 线程总数可控，提高资源利用率
 - 避免过多资源竞争，避免阻塞
 - 提供额外功能，定时执行、定期执行、监控等
 
-### 线程池的种类
+## 线程池的种类
 
 在`java.util.concurrent`包中，提供了工具类`Executors`调度器来创建线程池，可创建的线程池有四种
 
@@ -85,9 +85,9 @@ synchronized关键字的作用就是利用一个特定的对象设置一个锁�
 - ScheduledThreadPool - 调度线程池
   - 支持按照时间控制调度线程池
 
-## java.util.concurrent包
+# java.util.concurrent包
 
-### CountDownLatch倒计时锁
+## CountDownLatch倒计时锁
 
 使用CountDownLatch明确任务完成状态，已达到阻塞的目的
 
@@ -123,7 +123,7 @@ public static void main(String[] args) {
 }
 ```
 
-### Semaphore信号量
+## Semaphore信号量
 
 控制当前同时访问的总数
 
@@ -155,7 +155,7 @@ public static void main(String[] args) {
 }
 ```
 
-### CyclicBarrier循环屏障
+## CyclicBarrier循环屏障
 
 CyclicBarrier是一个同步工具类，允许一组线程互相等待，直到到达某个公共屏障点。与CountDownLatch不同的时候CyclicBarrier在释放等待线程后可以重用。
 
@@ -188,11 +188,11 @@ public static void main(String[] args) {
 }
 ```
 
-### ReentrantLock重入锁
+## ReentrantLock重入锁
 
 重入锁指任意线程在获取到锁之后，再次获得该锁时不会被该锁阻塞
 
-#### ReentrantLock与synchronized区别
+### ReentrantLock与synchronized区别
 
 | 特征     | synchronized           | ReentrantLock                                       |
 | -------- | ---------------------- | --------------------------------------------------- |
@@ -203,12 +203,12 @@ public static void main(String[] args) {
 | 锁的粒度 | 读写不区分             | 读锁、写锁                                          |
 | 高级功能 | 无                     | 公平锁、非公平锁唤醒，Condition分组唤醒，中断等待锁 |
 
-### Condition等待与唤醒
+## Condition等待与唤醒
 
 - 必须在ReentrantLock重入锁中使用
 - 用于替代wait()/notify()方法，可以唤醒指定的线程
 
-#### 核心方法
+### 核心方法
 
 - await() - 阻塞当前线程，直到signal唤醒
 - signal() - 唤醒被await的线程，从中断处继续执行
@@ -289,7 +289,7 @@ public static void main(String[] args) {
 }
 ```
 
-### Callable & Future
+## Callable & Future
 
 - Callable和Runnable一样代表着任务，区别在于Callable有返回值且可以抛出异常
 - Future是一个接口，它用于表示异步计算的结果。提供了检查计算结果是否完成的方法，以等待计算的完成，并获取计算的结果
@@ -343,13 +343,13 @@ class Computer implements Callable<Boolean> {
 }
 ```
 
-### 并发容器
+## 并发容器
 
 - CopyOnWriteArrayList
 - CopyOnWriteArraySet
 - ConcurrentHashMap
 
-### Atomic包
+## Atomic包
 
 Atomic包是一个专门为线程安全设计的包，包含多个原子操作类。底层采用CAS算法。
 

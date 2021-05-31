@@ -4,7 +4,7 @@ date: 2018-05-01
 tags: [运维,Hexo]
 ---
 # 云服务搭建Hexo
-## 安装配置Hexo
+# 安装配置Hexo
 
 安装Nodejs
 
@@ -30,7 +30,7 @@ npm install hexo-cli -g
 ln -s 源目录/hexo /usr/local/bin/hexo
 ```
 
-## 安装配置Nginx
+# 安装配置Nginx
 
 阿里云CentOS7自带yum源安装
 
@@ -66,7 +66,7 @@ server {
 
 
 
-## hexo配置
+# hexo配置
 
 创建hexo目录，在文件夹中初始化hexo
 

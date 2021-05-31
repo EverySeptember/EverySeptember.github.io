@@ -4,17 +4,16 @@ date: 2019-3-14 19:24:27
 tags: [架构,SSM,MyBatis]
 ---
 
-# SSM-MyBatis
 
-## MyBatis
+# MyBatis
 
-#### 特点
+### 特点
 
 - 优秀的持久层框架
 - 使用XML将SQL与程序解耦，便于维护
 - 学习简单，执行高效
 
-#### 使用步骤
+### 使用步骤
 
 ![步骤](https://ws3.sinaimg.cn/large/005BYqpgly1g18elgio1pj30x80ky1jz.jpg)
 
@@ -25,7 +24,7 @@ tags: [架构,SSM,MyBatis]
 5. 初始化SessionFactory
 6. 利用SqlSession对象操作数据
 
-### 1.引入MyBatis依赖
+## 1.引入MyBatis依赖
 
 ```xml
 <dependency>
@@ -35,7 +34,7 @@ tags: [架构,SSM,MyBatis]
 </dependency>
 ```
 
-### 2.创建MyBatis配置文件
+## 2.创建MyBatis配置文件
 
 在main/resources目录下创建mybatis-config.xml
 
@@ -71,11 +70,11 @@ tags: [架构,SSM,MyBatis]
 </configuration>
 ```
 
-### 3.创建实体（Entity）类
+## 3.创建实体（Entity）类
 
 创建Entity包，在包下创建与表对应的实体类
 
-### 4.创建Mapper映射文件
+## 4.创建Mapper映射文件
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -88,7 +87,7 @@ tags: [架构,SSM,MyBatis]
 </mapper>
 ```
 
-### 5.初始化SessionFactory
+## 5.初始化SessionFactory
 
 ```java
 Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
@@ -97,7 +96,7 @@ SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reade
 
 读取MyBatis核心配置文件，使用SessionFactory加载配置
 
-### 6.利用SqlSession对象操作数据
+## 6.利用SqlSession对象操作数据
 
 ```java
 public void testFindAll() throws IOException {

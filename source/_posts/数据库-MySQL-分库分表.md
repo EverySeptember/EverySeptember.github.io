@@ -4,13 +4,12 @@ date: 2019-7-23 21:55:13
 tags: [数据库, MySQL, 分库分表]
 ---
 
-# MySQL调优-分库分表
 
-## 分区表
+# 分区表
 
 分区表就是把大表按条件单独存储到不同的`物理小表`中，在构建出的完整`逻辑表`
 
-### 优点
+## 优点
 
 - 更少的数据检索范围
 - 拆分超级大的表，将部分数据加载至内存
@@ -19,11 +18,11 @@ tags: [数据库, MySQL, 分库分表]
 - 减少锁的范围，避免大表锁表
 - 可独立备份、恢复分区数据
 
-### 使用方法
+## 使用方法
 
 `create table () partition by func(字段) (partition 分区名 values 分区条件...)` 
 
-### 限制
+## 限制
 
 - 查询必须包含分区列，不允许对分区列进行计算
  2. 分区列必须是数字类型
@@ -31,31 +30,31 @@ tags: [数据库, MySQL, 分库分表]
  4. 建表时主键必须包含所有的列（影响主键索引性能）
  5. 最多1024个分区
 
-## 分库分表
+# 分库分表
 
-### 数据分库
+## 数据分库
 
 将数据存放在多条MySQL服务器上
 
 缺点：数据分布不均匀，未能根本解决海量数据存储问题
 
-### 数据分表
+## 数据分表
 
 将大表按照一定规则拆分成多个表，操作时对多表分别操作并进行合并
 
-### 分库分表中间件（Sharding Sphere）
+## 分库分表中间件（Sharding Sphere）
 
 结构
 
 ![Sharding Sphere结构](https://s2.ax1x.com/2019/07/24/eESkB6.png)
 
-#### Sharding JDBC
+### Sharding JDBC
 
 - 定位为轻量级Java框架，在Java的JDBC层提供的额外服务
 - 它使用客户端直接连接数据库，以jar包形式提供服务
 - 可理解为增强版的JDBC驱动，完全兼容JDBC和各种ORM框架（mybatis、hibernate等）
 
-#### 配置
+### 配置
 
 applicationContext.xml
 
@@ -85,11 +84,11 @@ applicationContext.xml
 </sharding:data-source>
 ```
 
-#### 分布式主键
+### 分布式主键
 
 在分库分表后，不要使用数据库自动生成主键，需采用[分布式主键](https://shardingsphere.apache.org/document/current/cn/features/sharding/other-features/key-generator/)生成策略
 
-### 读写分离
+## 读写分离
 
 1. 配置主从数据库
 
@@ -111,7 +110,7 @@ applicationContext.xml
    </master-slave:data-source>
    ```
 
-## 一主多从数据同步
+# 一主多从数据同步
 
 不同服务器上数据的完全同步
 

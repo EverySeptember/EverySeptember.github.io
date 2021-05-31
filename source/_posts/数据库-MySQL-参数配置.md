@@ -3,8 +3,7 @@ title: MySQL调优-参数配置
 date: 2019-7-24 20:38:29
 tags: [数据库, MySQL, 参数配置]
 ---
-# MySQL调优-参数配置
-## 设置参数的方法
+# 设置参数的方法
 
 以下方法优先级递减，第一种关闭当前session后失效，第二种当前服务进程关闭后失效
 
@@ -14,9 +13,9 @@ tags: [数据库, MySQL, 参数配置]
   - Windows下将配置文件my.ini存放到应用程序根目录
   - Linux保存到/etc/my.cnf文件
 
-## 常用参数
+# 常用参数
 
-### connection连接参数
+## connection连接参数
 
 - max_connections，最大连接数，`show VARIABLES like 'max_connections';`
 
@@ -61,7 +60,7 @@ tags: [数据库, MySQL, 参数配置]
 
   查看当前数据库连接详细状况：`show processlist;`
 
-### 查询缓存（QC）参数
+## 查询缓存（QC）参数
 
 将结果放入到内存缓存区，之后使用相同（需完全相同，包括字符和大小写）的select语句，将直接从缓存区读取
 
@@ -112,7 +111,7 @@ tags: [数据库, MySQL, 参数配置]
 
   每个需要排序的线程分配该大小的一个缓冲区。增加这值加速ORDER BY 或 GROUP BY操作 sort_buffer_size是一个connection级的参数，在每个 connection（session）第一次需要使用这个buffer的时候，一次性分配设置的内存。sort_buffer_size并不是越大越好，由于是connection级的参数，过大的设置+高并发可能会耗尽系统的内存资源。例如：500个连接将会消耗500*sort_buffer_size(2M)=1G
 
-### InooDB参数设置
+## InooDB参数设置
 
 - innodb_buffer_pool_size，缓存池大小设置
 

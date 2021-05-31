@@ -3,11 +3,10 @@ title: Springboot笔记2
 date: 2019-01-10 19:19:17
 tags: Springboot
 ---
-# Springboot笔记2
 
-## 核心特性
+# 核心特性
 
-### Springboot三大特性
+## Springboot三大特性
 
 - 组件自动装配：Web MVC、Web Flux、JDBC等
 
@@ -16,18 +15,18 @@ tags: Springboot
 
 
 
-#### 组件自动装配
+### 组件自动装配
 
 1. 激活自动装配：@EnableAutoConfiguration
 2. 配置：/META-INF/spring.factories
 3. 实现：XXXAutoConfiguration
 
-#### 嵌入式web容器
+### 嵌入式web容器
 
 - Web Servlet：Tomcat、Jetty及Undertow
 - Web Reactive：Netty Web Server
 
-#### 生产准备特性
+### 生产准备特性
 
 - 指标：/actuator/metrics
 - 健康检查：/actuator/health
@@ -35,11 +34,11 @@ tags: Springboot
 
 
 
-## Web应用
+# Web应用
 
-### 传统Servlet应用
+## 传统Servlet应用
 
-#### 依赖
+### 依赖
 
 ```
 <dependency>
@@ -48,7 +47,7 @@ tags: Springboot
 </dependency>
 ```
 
-#### Servlet组件
+### Servlet组件
 
 - Servlet
   - 实现
@@ -62,59 +61,59 @@ tags: Springboot
 
 
 
-#### Servlet注册
+### Servlet注册
 
-##### Servlet注解
+#### Servlet注解
 
 - @ServletComponentScan +
   - @WebServlet
   - @WebFilter
   - @WebListener
 
-##### Spring Bean
+#### Spring Bean
 
-##### RegistrationBean
+#### RegistrationBean
 
-#### 异步非阻塞：异步Servlet、非阻塞Servlet
+### 异步非阻塞：异步Servlet、非阻塞Servlet
 
-##### 异步Servlet
+#### 异步Servlet
 
 - javax.servlet.ServletRequest#startAsync()
 - javax.servlet.AsyncContext
 
-##### 非阻塞Servlet
+#### 非阻塞Servlet
 
 - javax.servlet.ServletInputStream#setReadListener
   - javax.servlet.ReadListener
 - javax.servlet.ServletOutputStream#setWriteListener
   - javax.servlet.WriteListener
 
-### Spring Web MVC应用
+## Spring Web MVC应用
 
-#### Web MVC视图
+### Web MVC视图
 
 - ViewResolver
 - View
 
-##### 模板引擎
+#### 模板引擎
 
 - Thymeleaf
 - Freemarker
 - JSP
 
-##### 内容协商
+#### 内容协商
 
 - ContentNegotiationConfigurer
 - ContentNegotiationStrategy
 - ContentNegotiatingViewResolver
 
-##### 异常处理
+#### 异常处理
 
 - @ExceptionHandler
 - HandlerExceptionResolver
   - ExceptionHandlerExceptionResolver
 - BasicErrorController (Spring Boot)
 
-#### Web MVCREST
+### Web MVCREST
 
-#### Web MVC核心
+### Web MVC核心

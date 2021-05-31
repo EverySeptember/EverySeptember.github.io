@@ -4,29 +4,28 @@ date: 2019-3-19 19:24:27
 tags: [架构,SSM,Spring]
 ---
 
-# SSM开发实战2-Spring
 
-## IOC控制反转
+# IOC控制反转
 
 - 全称Inverse Of Control，设计一种设计理念。
 - 核心是由代理人创建与管理对象，消费者通过代理人获取对象。
 - 目的是降低程序之间的直接耦合。
 
-## DI依赖注入
+# DI依赖注入
 
 - IOC是设计标准
 - DI(Dependency Injection)是具体实现
 - 在Java中DI是利用反射实现的
 
-## Spring Framework
+# Spring Framework
 
 - Spring框架是IOC理念的具体实现
 - Spring核心技术是反射
 - 设计模式主要使用工厂与代理模式实现
 
-## 1.Spring创建（xml方式）
+# 1.Spring创建（xml方式）
 
-### 1.引入JAR包
+## 1.引入JAR包
 
 ```xml
 <dependency>
@@ -36,7 +35,7 @@ tags: [架构,SSM,Spring]
 </dependency>
 ```
 
-### 2.创建配置文件
+## 2.创建配置文件
 
 在src/main/resources下创建applicationContext.xml
 
@@ -49,7 +48,7 @@ tags: [架构,SSM,Spring]
 </beans>
 ```
 
-### 3.创建入口类
+## 3.创建入口类
 
 在入口类中添加main方法，在项目启动时，便会根据加载内容对IOC容器进行初始化
 
@@ -60,11 +59,11 @@ public static void main(String[] args) {
 }
 ```
 
-### 4.创建类
+## 4.创建类
 
 在类中创建要加载的类作为私有属性，并且创建对应的set方法；spring IOC容器初始化时会使用该set方法注入要加载的类。
 
-### 5.在核心配置文件中配置要加载的类
+## 5.在核心配置文件中配置要加载的类
 
 ```xml
 <bean id="empDao" class="com.lu.spring.dao.EmpDao"></bean>
@@ -75,9 +74,9 @@ public static void main(String[] args) {
 </bean>
 ```
 
-## 2.Spring创建（注解方式）
+# 2.Spring创建（注解方式）
 
-### Spring IOC注解
+## Spring IOC注解
 
 - @Responsitory-持久层类
 - @Service-业务逻辑层
@@ -86,7 +85,7 @@ public static void main(String[] args) {
 - @Resource-智能加载
 - @Autowired-按类型加载
 
-### 1.引入依赖
+## 1.引入依赖
 
 ```xml
 <dependency>
@@ -96,7 +95,7 @@ public static void main(String[] args) {
 </dependency>
 ```
 
-### 2.创建配置文件
+## 2.创建配置文件
 
 在src/main/resources下创建applicationContext.xml
 
@@ -122,13 +121,13 @@ public static void main(String[] args) {
 </beans>
 ```
 
-### 3.创建类，并将类使用对应的注解
+## 3.创建类，并将类使用对应的注解
 
 使用注解创建的bean，id默认为首字母小写的类名；在注解后也可以对bean id进行命名，如`@Responsitory("eDao")`
 
-### 4.注入对象
+## 4.注入对象
 
-#### @Resource
+### @Resource
 
 在类中创建对象，无须创建get、set方法，使用@Resource注解注入。
 
@@ -136,15 +135,15 @@ public static void main(String[] args) {
 2. 指定name属性，可以按照name进行加载，如`@Resource(name = "eDao")`
 3. （不推荐）未指明name，同时也不存在属性名相同的bean时，则自动按照类型进行匹配
 
-#### @Autowired
+### @Autowired
 
 只能按照类型进行注入，已不常用
 
-## AOP面向切面编程
+# AOP面向切面编程
 
 在不修改源代码的情况下为程序进行扩展的计数
 
-### 1.引入依赖
+## 1.引入依赖
 
 ```xml
 <dependency>
@@ -159,7 +158,7 @@ public static void main(String[] args) {
 </dependency>
 ```
 
-### 2.修改配置文件
+## 2.修改配置文件
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -181,7 +180,7 @@ public static void main(String[] args) {
 </beans>
 ```
 
-### 3.创建切面类
+## 3.创建切面类
 
 切面类需要@Component和@Aspect注解
 

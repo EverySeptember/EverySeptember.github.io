@@ -6,9 +6,9 @@ tags: [架构,Spring,Spring Web,Spring MVC]
 
 # Spring Web
 
-## 实现
+# 实现
 
-### Demo
+## Demo
 
 1. 引入依赖
 
@@ -68,7 +68,7 @@ tags: [架构,Spring,Spring Web,Spring MVC]
 
 也称Spring Web MVC，属于**展示层**框架。是Spring框架的一部分。
 
-## Demo
+# Demo
 
 1. 引入依赖
 

@@ -3,11 +3,10 @@ title: Springboot实战笔记
 date: 2019-1-14 18:49:49
 tags: Springboot
 ---
-# Springboot实战笔记
 
-## Spring Boot常用配置
+# Spring Boot常用配置
 
-### 目录结构
+## 目录结构
 
 - java：源码
 - resource：资源位置
@@ -15,9 +14,9 @@ tags: Springboot
   - template：动态页面（模板文件位置）
   - application.properties：核心配置文件
 
-### application.properties
+## application.properties
 
-#### 常用配置项
+### 常用配置项
 
 | web常用配置项                | 默认值 | 说明              |
 | :--------------------------- | :----- | :---------------- |
@@ -30,16 +29,16 @@ tags: Springboot
 | spring.jackson.date-format   |        | json输出的日期    |
 | spring.jackson.time-zone     |        | 设置GMT时区       |
 
-#### PS
+### PS
 
 - UTF-8只包含了20000+个中文字符，对于生僻字显示不了
 - 开发时关闭Thymeleaf缓存，同时配合自动构建，可以实现热部署，提高开发效率
 
-### 日志
+## 日志
 
 Springboot默认使用logback
 
-#### 常用配置项
+### 常用配置项
 
 | 日志常用配置项     | 默认值             | 说明                 |
 | ------------------ | ------------------ | -------------------- |
@@ -48,7 +47,7 @@ Springboot默认使用logback
 | logging.level.*    | info               | 定义指定包的输出级别 |
 | logging.config     | logback-spring.xml | 日志的配置文件       |
 
-#### PS
+### PS
 
 - 日志级别 debug->info->warn->error，默认级别为info，设置debug为true，会出现debug以上的级别
 - logging.level.root代表全局设置，只会显示root配置级别及以上的日志；logging.level.*可以指定包的显示级别
@@ -56,7 +55,7 @@ Springboot默认使用logback
 
 
 
-### Spring Boot配置文件
+## Spring Boot配置文件
 
 SpringBoot支持两种格式的配置文件
 
@@ -65,27 +64,27 @@ SpringBoot支持两种格式的配置文件
 
 当同时存在两种格式文件，以properties为准
 
-#### yaml
+### yaml
 
 yaml是一种简洁的非标记语言。yaml以数据为中心，使用空白、缩进、分行组织数据，从而更加简洁易读。
 
-##### yaml语法格式
+#### yaml语法格式
 
 - 标准格式：key:（空格）value
 - 使用空格代表层级关系，以`:`结束
 
-### 环境配置文件
+## 环境配置文件
 
 - SpringBoot可针对不同的环境提供不同的Profile文件
 - Profile文件的默认命名格式为application-{env}.yml
 - 使用spring.profiles.active选项来指定不同的profile
 - 不同环境日志系统的配置需要用logback-spring.xml修改
 
-### Spring Boot自定义配置
+## Spring Boot自定义配置
 
 Spring Boot内置的配置项远远不能支撑我们的程序运行，在项目设计的时候，往往因为扩展性的需要，项目需要预留很多自定义设置项，Spring Boot允许我们配置自定义选项。
 
-#### 配置方式
+### 配置方式
 
 - @Value单个属性注入
   - 在类属性添加`@Value(${name})`注解，便可将不同的配置注入到当前属性中
