@@ -121,11 +121,9 @@ tags: [架构,SSM,Spring MVC]
 # 中文乱码的配置解决
 
 - Get请求乱码：在Tomcat server.xml的Connector标签中添加属性URIEncoding
-
-      <Connector port="8080" protocol="HTTP/1.1"
-                 connectionTimeout="20000"
-                 redirectPort="8443" 
-      		   URIEcoding="UTF-8"/>
+  ```xml
+    <Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443" URIEcoding="UTF-8"/>
+  ```
 
 - Post请求乱码：在web.xml中配置添加过滤器CharacterEncodingFilter
 
