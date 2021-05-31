@@ -1,23 +1,23 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lu"><title>数据结构-线性表-散列表 · 这里是lu</title><meta name="description" content="散列表散列表的英文是Hash Table，即日常所说的哈希表或者Hash表。
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lu"><title>数据结构-线性表-散列表 · 这里是lu</title><meta name="description" content="散列表的英文是Hash Table，即日常所说的哈希表或者Hash表。
 散列表用的是数组按照下标随机访问数据的特性，所以散列表其实就是数组的一种扩展，由数组演化而来。
 散列表的键（Key）经过散列函数（Hash函数）计算得到散列值（Hash值）作为数组下标，形成散列表。
-哈希冲突解决哈希冲突两"><meta name="keywords" content="lu的博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">这里是lu</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/EverySeptember"><i class="fa fa-github"></i></a></li></ul><div class="footer"><div class="p"> <span>©  </span><i class="fa fa-star"></i><span> lu</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about">关于</a></li><li><a href="/guestbook">留言</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>数据结构-线性表-散列表</a></h3></div><div class="post-content"><h1 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h1><p>散列表的英文是Hash Table，即日常所说的哈希表或者Hash表。</p>
+哈希冲突解决哈希冲突两种方法"><meta name="keywords" content="lu的博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">这里是lu</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/EverySeptember"><i class="fa fa-github"></i></a></li></ul><div class="footer"><div class="p"> <span>©  </span><i class="fa fa-star"></i><span> lu</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>数据结构-线性表-散列表</a></h3></div><div class="post-content"><p>散列表的英文是Hash Table，即日常所说的哈希表或者Hash表。</p>
 <p>散列表用的是数组按照下标随机访问数据的特性，所以散列表其实就是数组的一种扩展，由数组演化而来。</p>
 <p>散列表的键（Key）经过散列函数（Hash函数）计算得到散列值（Hash值）作为数组下标，形成散列表。</p>
-<h2 id="哈希冲突"><a href="#哈希冲突" class="headerlink" title="哈希冲突"></a>哈希冲突</h2><p>解决哈希冲突两种方法</p>
-<h3 id="寻址法（open-addressing）"><a href="#寻址法（open-addressing）" class="headerlink" title="寻址法（open addressing）"></a>寻址法（open addressing）</h3><p>出现一个哈希冲突，便重新寻找一个空闲位置将其插入。</p>
-<h4 id="线性探测"><a href="#线性探测" class="headerlink" title="线性探测"></a>线性探测</h4><ul>
+<h1 id="哈希冲突"><a href="#哈希冲突" class="headerlink" title="哈希冲突"></a>哈希冲突</h1><p>解决哈希冲突两种方法</p>
+<h2 id="寻址法（open-addressing）"><a href="#寻址法（open-addressing）" class="headerlink" title="寻址法（open addressing）"></a>寻址法（open addressing）</h2><p>出现一个哈希冲突，便重新寻找一个空闲位置将其插入。</p>
+<h3 id="线性探测"><a href="#线性探测" class="headerlink" title="线性探测"></a>线性探测</h3><ul>
 <li>插入：从当前位置一次向后查找，若之后均没有则重新从头查找；</li>
 <li>查找：过程类似于插入，先与下标为目标哈希值的元素对照，如果相同则返回，如果不同则依次向后查找，如果找到有空闲位置则说明不存在；</li>
 <li>删除：不能简单讲位置置空，否则会影响查找算法，应将删除的位置标记为deleted，查找到该位置时不是退出而是继续向下探测</li>
 </ul>
 <p>该方法插入的数据越多，发生冲突的可能性越大，空闲位置会越少，探测时间会越久。极限情况下会达到O(n)。</p>
-<h4 id="二次探测"><a href="#二次探测" class="headerlink" title="二次探测"></a>二次探测</h4><p>与线性探测原理类似，其步进长度不是1，而是步长的平方。</p>
-<h4 id="双重散列"><a href="#双重散列" class="headerlink" title="双重散列"></a>双重散列</h4><p>该方法是在遇到哈希冲突的时候再次进行哈希，多次哈希直到找到空闲的位置。</p>
+<h3 id="二次探测"><a href="#二次探测" class="headerlink" title="二次探测"></a>二次探测</h3><p>与线性探测原理类似，其步进长度不是1，而是步长的平方。</p>
+<h3 id="双重散列"><a href="#双重散列" class="headerlink" title="双重散列"></a>双重散列</h3><p>该方法是在遇到哈希冲突的时候再次进行哈希，多次哈希直到找到空闲的位置。</p>
 <p>无论是上述那种方法，空闲位置不多的时候，哈希冲突的概率都会大大提高。为了尽可能保证散列表的操作效率，一般情况下会尽可能保证散列表中有一定比例的空闲槽位。使用<strong>装载因子（load factor）</strong>来表示空位的多少。</p>
 <p>装载因子的计算公式：<code>装入表中的元素个数 / 散列表的长度</code>。</p>
 <p>装在因子越大，说明空闲位置越少，冲突越多，性能会下降。</p>
-<h4 id="寻址法的优缺点"><a href="#寻址法的优缺点" class="headerlink" title="寻址法的优缺点"></a>寻址法的优缺点</h4><ul>
+<h3 id="寻址法的优缺点"><a href="#寻址法的优缺点" class="headerlink" title="寻址法的优缺点"></a>寻址法的优缺点</h3><ul>
 <li>优点<ul>
 <li>所有数据都存在数组中，可有效利用CPU缓存加快查询速度    </li>
 <li>序列化简单</li>
@@ -29,8 +29,8 @@
 </ul>
 </li>
 </ul>
-<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><p>数据量较小、装载因子较小的时候适合适用寻址法。</p>
-<h3 id="链表法（chaining）"><a href="#链表法（chaining）" class="headerlink" title="链表法（chaining）"></a>链表法（chaining）</h3><p>链表法每个数组元素都是一个桶，桶中放置一个链表，哈希值相同的元素插入到相应的链表上。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>数据量较小、装载因子较小的时候适合适用寻址法。</p>
+<h2 id="链表法（chaining）"><a href="#链表法（chaining）" class="headerlink" title="链表法（chaining）"></a>链表法（chaining）</h2><p>链表法每个数组元素都是一个桶，桶中放置一个链表，哈希值相同的元素插入到相应的链表上。</p>
 <ul>
 <li>优点<ul>
 <li>链表法对内存的使用率比寻址法更高</li>
@@ -42,38 +42,38 @@
 </ul>
 </li>
 </ul>
-<h4 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h4><p>链表法散列表比较适合存储大对象、大数据量，而且它更加灵活，支持更多优化策略。</p>
-<h2 id="设计散列函数"><a href="#设计散列函数" class="headerlink" title="设计散列函数"></a>设计散列函数</h2><p>原则</p>
+<h3 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h3><p>链表法散列表比较适合存储大对象、大数据量，而且它更加灵活，支持更多优化策略。</p>
+<h1 id="设计散列函数"><a href="#设计散列函数" class="headerlink" title="设计散列函数"></a>设计散列函数</h1><p>原则</p>
 <ul>
 <li>设计不能太复杂，否则会影响性能</li>
 <li>生成的值要尽可能随机并且均匀分布。</li>
 </ul>
-<h2 id="散列表扩容"><a href="#散列表扩容" class="headerlink" title="散列表扩容"></a>散列表扩容</h2><p>装载因子过大时需要启动动态扩容，在对数组进行扩容的同时需要重新计算哈希值。</p>
+<h1 id="散列表扩容"><a href="#散列表扩容" class="headerlink" title="散列表扩容"></a>散列表扩容</h1><p>装载因子过大时需要启动动态扩容，在对数组进行扩容的同时需要重新计算哈希值。</p>
 <p>插入一个数据最好情况是O(1)，最坏情况需要扩容，是O(n)，均摊计算是O(1)。</p>
 <p>在对元素进行删除后装载因子会减小，此时可以进行动态缩容。</p>
-<h3 id="避免低效扩容"><a href="#避免低效扩容" class="headerlink" title="避免低效扩容"></a>避免低效扩容</h3><p>在扩容时可以选择不进行“一次性扩容”，可在初始化后在每次新插入数据时再从旧数据中选择一条插入到新数组中，多次O(1)复杂度的扩容，可有效提高效率。</p>
-<h2 id="Java的HashMap分析"><a href="#Java的HashMap分析" class="headerlink" title="Java的HashMap分析"></a>Java的HashMap分析</h2><ul>
+<h2 id="避免低效扩容"><a href="#避免低效扩容" class="headerlink" title="避免低效扩容"></a>避免低效扩容</h2><p>在扩容时可以选择不进行“一次性扩容”，可在初始化后在每次新插入数据时再从旧数据中选择一条插入到新数组中，多次O(1)复杂度的扩容，可有效提高效率。</p>
+<h1 id="Java的HashMap分析"><a href="#Java的HashMap分析" class="headerlink" title="Java的HashMap分析"></a>Java的HashMap分析</h1><ul>
 <li>初始大小：默认16，如果初始化时目标明确，可以手动修改，这样能减少扩容次数，提高效率。</li>
 <li>装载因子：默认0.75，超过0.75便会扩容为原来的两倍。</li>
 <li>哈希冲突：JDK1.8中引入了红黑树，在链表长度过长（默认8）时，便会将链表树化；在红黑树节点过小（默认为6）的时候，红黑树又将变回链表。</li>
 </ul>
-<h2 id="工业级的散列表"><a href="#工业级的散列表" class="headerlink" title="工业级的散列表"></a>工业级的散列表</h2><h3 id="应具有的特性"><a href="#应具有的特性" class="headerlink" title="应具有的特性"></a>应具有的特性</h3><ul>
+<h1 id="工业级的散列表"><a href="#工业级的散列表" class="headerlink" title="工业级的散列表"></a>工业级的散列表</h1><h2 id="应具有的特性"><a href="#应具有的特性" class="headerlink" title="应具有的特性"></a>应具有的特性</h2><ul>
 <li>支持快速的插入、查询、删除操作</li>
 <li>内存占用合理，不能浪费过多的空间</li>
 <li>性能稳定，极端情况下的性能也不能退化到无法接受的情况</li>
 </ul>
-<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><ul>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><ul>
 <li>设计一个合适的散列函数</li>
 <li>定义装载因子阈值，并且合理设计动态扩容策略</li>
 <li>选择合适的解决哈希冲突的方法</li>
 </ul>
-<h2 id="散列表与链表结合使用"><a href="#散列表与链表结合使用" class="headerlink" title="散列表与链表结合使用"></a>散列表与链表结合使用</h2><h3 id="LRU算法"><a href="#LRU算法" class="headerlink" title="LRU算法"></a>LRU算法</h3><p><img src="https://static001.geekbang.org/resource/image/ea/6e/eaefd5f4028cc7d4cfbb56b24ce8ae6e.jpg" alt="LRU算法"></p>
+<h1 id="散列表与链表结合使用"><a href="#散列表与链表结合使用" class="headerlink" title="散列表与链表结合使用"></a>散列表与链表结合使用</h1><h2 id="LRU算法"><a href="#LRU算法" class="headerlink" title="LRU算法"></a>LRU算法</h2><p><img src="https://static001.geekbang.org/resource/image/ea/6e/eaefd5f4028cc7d4cfbb56b24ce8ae6e.jpg" alt="LRU算法"></p>
 <p>在散列表中使用双向链表作为存储介质，prev与next做双向链表寻址使用，hnext则将链表的节点添加到散列表中去，实现双向链表与散列表的结合。</p>
 <ul>
 <li>查找数据：根据散列表进行复杂度为O(1)的寻找，找到之后将该数据移动到链表的尾部</li>
 <li>删除数据：首先找到该数据位置，其后将该数据从散列表和链表上分别删除</li>
 <li>添加数据：首先在散列表中寻找该数据，如果找不到则将该数据添加到链表的尾端；如果此时缓存已满，则需要将首端数据清除，然后再将数据添加到链表的尾部</li>
 </ul>
-<h3 id="Redis有序集合"><a href="#Redis有序集合" class="headerlink" title="Redis有序集合"></a>Redis有序集合</h3><p>跳表与散列表的结合，在跳表节点中添加散列表的地址属性，使相同的节点指向的散列表节点总是相同的。</p>
-<h3 id="Java-LinkedHashMap"><a href="#Java-LinkedHashMap" class="headerlink" title="Java LinkedHashMap"></a>Java LinkedHashMap</h3><p>使用双向链表与散列表同时使用，原理与LRU缓存相同。</p>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-04-03</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据结构/" title="数据结构">数据结构 </a><a class="tag" href="/tags/散列表/" title="散列表">散列表 </a><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/04/07/%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C/" title="算法-哈希">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/03/30/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF-%E8%BF%9B%E9%98%B6/" title="Java核心技术-进阶">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
+<h2 id="Redis有序集合"><a href="#Redis有序集合" class="headerlink" title="Redis有序集合"></a>Redis有序集合</h2><p>跳表与散列表的结合，在跳表节点中添加散列表的地址属性，使相同的节点指向的散列表节点总是相同的。</p>
+<h2 id="Java-LinkedHashMap"><a href="#Java-LinkedHashMap" class="headerlink" title="Java LinkedHashMap"></a>Java LinkedHashMap</h2><p>使用双向链表与散列表同时使用，原理与LRU缓存相同。</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-04-03</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据结构/" title="数据结构">数据结构 </a><a class="tag" href="/tags/散列表/" title="散列表">散列表 </a><span class="leancloud_visitors"></span></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/04/07/%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C/" title="算法-哈希">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/03/30/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF-%E8%BF%9B%E9%98%B6/" title="Java核心技术-进阶">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

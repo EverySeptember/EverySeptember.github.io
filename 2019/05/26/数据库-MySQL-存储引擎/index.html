@@ -1,18 +1,19 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lu"><title>MySQL调优-存储引擎 · 这里是lu</title><meta name="description" content="MySQL调优-存储引擎MySQL体系结构
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lu"><title>MySQL调优-存储引擎 · 这里是lu</title><meta name="description" content="MySQL体系结构
 存储引擎存储引擎只针对表，每个表只允许有一个存储引擎，数据库中允许出现多个不同引擎
 常见的有InnoDB、MyISAM、Memory等
 创建表时选择引擎：CREATE TABLE 表名() ENGINE 引擎名;
 InnoDB
-MySQL5.5.8后默认的"><meta name="keywords" content="lu的博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">这里是lu</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/EverySeptember"><i class="fa fa-github"></i></a></li></ul><div class="footer"><div class="p"> <span>©  </span><i class="fa fa-star"></i><span> lu</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about">关于</a></li><li><a href="/guestbook">留言</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>MySQL调优-存储引擎</a></h3></div><div class="post-content"><h1 id="MySQL调优-存储引擎"><a href="#MySQL调优-存储引擎" class="headerlink" title="MySQL调优-存储引擎"></a>MySQL调优-存储引擎</h1><h2 id="MySQL体系结构"><a href="#MySQL体系结构" class="headerlink" title="MySQL体系结构"></a>MySQL体系结构</h2><p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1g3esol5eb5j30jc0dwwhd.jpg" alt="MySQL体系结构"></p>
-<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><p>存储引擎只针对表，每个表只允许有一个存储引擎，数据库中允许出现多个不同引擎</p>
+MySQL5.5.8后默认的存储引擎
+InnoDB采"><meta name="keywords" content="lu的博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">这里是lu</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/EverySeptember"><i class="fa fa-github"></i></a></li></ul><div class="footer"><div class="p"> <span>©  </span><i class="fa fa-star"></i><span> lu</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>MySQL调优-存储引擎</a></h3></div><div class="post-content"><h1 id="MySQL体系结构"><a href="#MySQL体系结构" class="headerlink" title="MySQL体系结构"></a>MySQL体系结构</h1><p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1g3esol5eb5j30jc0dwwhd.jpg" alt="MySQL体系结构"></p>
+<h1 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h1><p>存储引擎只针对表，每个表只允许有一个存储引擎，数据库中允许出现多个不同引擎</p>
 <p>常见的有InnoDB、MyISAM、Memory等</p>
 <p>创建表时选择引擎：<code>CREATE TABLE 表名() ENGINE 引擎名;</code></p>
-<h3 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h3><ol>
+<h2 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h2><ol>
 <li>MySQL5.5.8后默认的存储引擎</li>
 <li>InnoDB采用“表空间”保存文件</li>
 <li>InnoDB支持事务处理</li>
 </ol>
-<h4 id="存储特性"><a href="#存储特性" class="headerlink" title="存储特性"></a>存储特性</h4><ul>
+<h3 id="存储特性"><a href="#存储特性" class="headerlink" title="存储特性"></a>存储特性</h3><ul>
 <li>表空间的两种形式<ul>
 <li>早期使用系统表空间ibdata1（ibdataN）中，所有数据放到一个文件中</li>
 <li>5.6之后默认使用独立表空间：表明.ibd（推荐）</li>
@@ -21,12 +22,12 @@ MySQL5.5.8后默认的"><meta name="keywords" content="lu的博客"><meta conten
 <li>设置innodb_file_per_table修改表空间模式</li>
 <li>支持部分的内存存储</li>
 </ul>
-<h4 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h4><ul>
+<h3 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h3><ul>
 <li>InnoDB支持事务</li>
 <li>InnoDB默认使用行级锁</li>
 <li>InnoDB具有良好的高并发特性</li>
 </ul>
-<h5 id="MySQL的锁"><a href="#MySQL的锁" class="headerlink" title="MySQL的锁"></a>MySQL的锁</h5><ul>
+<h4 id="MySQL的锁"><a href="#MySQL的锁" class="headerlink" title="MySQL的锁"></a>MySQL的锁</h4><ul>
 <li>职责分类<ul>
 <li>共享锁-读锁</li>
 <li>独占锁（排它锁）-写锁</li>
@@ -39,49 +40,49 @@ MySQL5.5.8后默认的"><meta name="keywords" content="lu的博客"><meta conten
 </li>
 </ul>
 <p>InnoDB中只有利用索引的写操作才是行级锁，不能使用索引的写操作时表级锁</p>
-<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
 <li>MySQL5.7开始有InnoDB支持全文索引与空间函数</li>
 <li>优先推荐使用</li>
 </ul>
-<h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><ul>
+<h2 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h2><ul>
 <li>不支持事务</li>
 <li>支持全文检索，支持text支持前缀索引</li>
 <li>支持数据压缩</li>
 <li>紧密存储，顺序读性能良好</li>
 <li>表级锁，混合读写性能不加，并发性差</li>
 </ul>
-<h5 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
+<h4 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
 <li>非事务应用，如保存日志</li>
 <li>只读类应用，如报表数据、字典数据</li>
 <li>空间类应用（5.7之前）</li>
 <li>MySQL自动创建的系统临时表，SQL查询，分组的临时表引擎</li>
 </ul>
-<h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><ul>
+<h2 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h2><ul>
 <li>不支持事务</li>
 <li>内存读写，临时存储</li>
 <li>超高的读写效率，比MyISAM高一个量级</li>
 <li>表级锁，并发性差</li>
 </ul>
-<h5 id="适用场景-2"><a href="#适用场景-2" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
+<h4 id="适用场景-2"><a href="#适用场景-2" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
 <li>读多写少的静态数据</li>
 <li>充当缓存使用，保存高频访问静态数据</li>
 <li>MySQL自动创建的系统临时表</li>
 </ul>
-<h5 id="关键参数"><a href="#关键参数" class="headerlink" title="关键参数"></a>关键参数</h5><ul>
+<h4 id="关键参数"><a href="#关键参数" class="headerlink" title="关键参数"></a>关键参数</h4><ul>
 <li>max_heap_table_size：控制内存表大小（字节）<ul>
 <li>默认16m</li>
 </ul>
 </li>
 <li>tmp_table_size：设置内存临时表最大值（字节）</li>
 </ul>
-<h3 id="CSV"><a href="#CSV" class="headerlink" title="CSV"></a>CSV</h3><ul>
+<h2 id="CSV"><a href="#CSV" class="headerlink" title="CSV"></a>CSV</h2><ul>
 <li>纯文本保存</li>
 <li>不支持事务</li>
 <li>不支持索引</li>
 <li>不允许空列</li>
 </ul>
-<h5 id="适用场景-3"><a href="#适用场景-3" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
+<h4 id="适用场景-3"><a href="#适用场景-3" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
 <li>数据交换/数据迁移</li>
 <li>不依赖MySQL环境</li>
 </ul>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-05-26</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/MySQL/" title="MySQL">MySQL </a><a class="tag" href="/tags/MySQL存储引擎/" title="MySQL存储引擎">MySQL存储引擎 </a><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/05/29/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E7%B4%A2%E5%BC%95/" title="MySQL调优-索引">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/05/26/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="MySQL调优-基础知识">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-05-26</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/MySQL/" title="MySQL">MySQL </a><a class="tag" href="/tags/MySQL存储引擎/" title="MySQL存储引擎">MySQL存储引擎 </a><span class="leancloud_visitors"></span></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/05/29/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E7%B4%A2%E5%BC%95/" title="MySQL调优-索引">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/05/26/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="MySQL调优-基础知识">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

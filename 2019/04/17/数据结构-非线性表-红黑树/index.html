@@ -1,11 +1,11 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lu"><title>数据结构-非线性表-红黑树 · 这里是lu</title><meta name="description" content="红黑树平衡二叉查找树平衡二叉树二叉树中任意一个节点的左右子树的高度相差不能大于1
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lu"><title>数据结构-非线性表-红黑树 · 这里是lu</title><meta name="description" content="平衡二叉查找树平衡二叉树二叉树中任意一个节点的左右子树的高度相差不能大于1
 所以满二叉树、完全二叉树都是平衡二叉树，但非完全二叉树也可能是平衡二叉树
 平衡二叉查找树在满足平衡二叉树的同时，还满足二叉查找树的特点
 红黑树红黑树是一种不严格的平衡二叉查找树，它的各个叶子节点的深度可能相差一倍
-红黑"><meta name="keywords" content="lu的博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">这里是lu</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/EverySeptember"><i class="fa fa-github"></i></a></li></ul><div class="footer"><div class="p"> <span>©  </span><i class="fa fa-star"></i><span> lu</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about">关于</a></li><li><a href="/guestbook">留言</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>数据结构-非线性表-红黑树</a></h3></div><div class="post-content"><h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><h2 id="平衡二叉查找树"><a href="#平衡二叉查找树" class="headerlink" title="平衡二叉查找树"></a>平衡二叉查找树</h2><h3 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h3><p>二叉树中任意一个节点的左右子树的高度相差不能大于1</p>
+红黑树中的"><meta name="keywords" content="lu的博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">这里是lu</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/EverySeptember"><i class="fa fa-github"></i></a></li></ul><div class="footer"><div class="p"> <span>©  </span><i class="fa fa-star"></i><span> lu</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>数据结构-非线性表-红黑树</a></h3></div><div class="post-content"><h1 id="平衡二叉查找树"><a href="#平衡二叉查找树" class="headerlink" title="平衡二叉查找树"></a>平衡二叉查找树</h1><h2 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h2><p>二叉树中任意一个节点的左右子树的高度相差不能大于1</p>
 <p>所以满二叉树、完全二叉树都是平衡二叉树，但非完全二叉树也可能是平衡二叉树</p>
-<h3 id="平衡二叉查找树-1"><a href="#平衡二叉查找树-1" class="headerlink" title="平衡二叉查找树"></a>平衡二叉查找树</h3><p>在满足平衡二叉树的同时，还满足二叉查找树的特点</p>
-<h2 id="红黑树-1"><a href="#红黑树-1" class="headerlink" title="红黑树"></a>红黑树</h2><p>红黑树是一种不严格的平衡二叉查找树，它的各个叶子节点的深度可能相差一倍</p>
+<h2 id="平衡二叉查找树-1"><a href="#平衡二叉查找树-1" class="headerlink" title="平衡二叉查找树"></a>平衡二叉查找树</h2><p>在满足平衡二叉树的同时，还满足二叉查找树的特点</p>
+<h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>红黑树是一种不严格的平衡二叉查找树，它的各个叶子节点的深度可能相差一倍</p>
 <p>红黑树中的节点，一类被标记为黑色，一类被标记为红色，同时还要满足以下几个要求：</p>
 <ul>
 <li>根节点是黑色的</li>
@@ -15,15 +15,15 @@
 </ul>
 <p>将红黑树种的红色节点全部取出，然后将子节点接到祖父节点上，这样会形成四叉树。由于红黑树任意节点到叶子节点都包含相同数量黑色节点的特性，形成的四叉树的所有叶子结点高度相同。将多余的节点放到叶子节点中，就会形成完全二叉树。这时其高度是log2 n，将红色节点放回其位置，由于红色节点不相邻的特性，其高度不会超过2 * log2 n，所以操作复杂度仍是<code>O(logn)</code>，性能仍然很好。</p>
 <p>红黑树的插入、删除操作会破坏红黑树的平衡，需要调整平衡。</p>
-<h3 id="左旋（rotate-left）、右旋（rotate-right）"><a href="#左旋（rotate-left）、右旋（rotate-right）" class="headerlink" title="左旋（rotate left）、右旋（rotate right）"></a>左旋（rotate left）、右旋（rotate right）</h3><p><img src="https://static001.geekbang.org/resource/image/0e/1e/0e37e597737012593a93105ebbf4591e.jpg" alt="左旋、右旋"></p>
-<h3 id="插入平衡操作"><a href="#插入平衡操作" class="headerlink" title="插入平衡操作"></a>插入平衡操作</h3><p>红黑树规定，插入的节点必须是红色的。而且，二叉查找树中新插入的节点都是都是放在叶子结点上。</p>
+<h2 id="左旋（rotate-left）、右旋（rotate-right）"><a href="#左旋（rotate-left）、右旋（rotate-right）" class="headerlink" title="左旋（rotate left）、右旋（rotate right）"></a>左旋（rotate left）、右旋（rotate right）</h2><p><img src="https://static001.geekbang.org/resource/image/0e/1e/0e37e597737012593a93105ebbf4591e.jpg" alt="左旋、右旋"></p>
+<h2 id="插入平衡操作"><a href="#插入平衡操作" class="headerlink" title="插入平衡操作"></a>插入平衡操作</h2><p>红黑树规定，插入的节点必须是红色的。而且，二叉查找树中新插入的节点都是都是放在叶子结点上。</p>
 <ul>
 <li>如果插入节点的父节点是黑色的，直接插入即可；</li>
 <li>如果插入的节点是根节点，则直接将其转成黑色；</li>
 <li>除上述两种情况外的所有情况都会破坏红黑树平衡，需要进行平衡调整；</li>
 </ul>
-<h4 id="插入操作调整步骤"><a href="#插入操作调整步骤" class="headerlink" title="插入操作调整步骤"></a>插入操作调整步骤</h4><p>首先，当前正在处理的节点叫做关注节点，处理的节点都是红色的。</p>
-<h5 id="CASE1：如果当前关注节点a的叔叔节点d是红色的"><a href="#CASE1：如果当前关注节点a的叔叔节点d是红色的" class="headerlink" title="CASE1：如果当前关注节点a的叔叔节点d是红色的"></a>CASE1：如果当前关注节点a的叔叔节点d是红色的</h5><ol>
+<h3 id="插入操作调整步骤"><a href="#插入操作调整步骤" class="headerlink" title="插入操作调整步骤"></a>插入操作调整步骤</h3><p>首先，当前正在处理的节点叫做关注节点，处理的节点都是红色的。</p>
+<h4 id="CASE1：如果当前关注节点a的叔叔节点d是红色的"><a href="#CASE1：如果当前关注节点a的叔叔节点d是红色的" class="headerlink" title="CASE1：如果当前关注节点a的叔叔节点d是红色的"></a>CASE1：如果当前关注节点a的叔叔节点d是红色的</h4><ol>
 <li><p>将关注节点a的父节点b和叔叔节点d调整为黑色</p>
 </li>
 <li><p>将关注节点a的祖父节点c调整为红色</p>
@@ -34,7 +34,7 @@
 <p><img src="https://static001.geekbang.org/resource/image/60/40/603cf91f54b5db21bd02c6c5678ecf40.jpg" alt="CASE1"></p>
 </li>
 </ol>
-<h5 id="CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点"><a href="#CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点" class="headerlink" title="CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点"></a>CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点</h5><ol>
+<h4 id="CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点"><a href="#CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点" class="headerlink" title="CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点"></a>CASE2：如果当前关注节点a的叔叔节点d是黑色，且关注节点a是其父节点b的右子节点</h4><ol>
 <li><p>将关注节点设置为当前关注节点a的父节点b</p>
 </li>
 <li><p>围绕节点b进行左旋</p>
@@ -43,7 +43,7 @@
 <p><img src="https://static001.geekbang.org/resource/image/44/ad/4480a314f9d83c343b8adbb28b6782ad.jpg" alt="CASE2"></p>
 </li>
 </ol>
-<h5 id="CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点"><a href="#CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点" class="headerlink" title="CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点"></a>CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点</h5><ol>
+<h4 id="CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点"><a href="#CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点" class="headerlink" title="CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点"></a>CASE3：如果当前关注节点a的叔叔节点是黑色，且关注节点是其父节点的左子节点</h4><ol>
 <li><p>围绕当前关注节点a的祖父节点c进行右旋</p>
 </li>
 <li><p>将a的父节点b与兄弟节点c进行颜色互换</p>
@@ -52,12 +52,12 @@
 <p><img src="https://static001.geekbang.org/resource/image/04/12/04650d9470b1e67899f5b8b7b8e33212.jpg" alt="CASE3"></p>
 </li>
 </ol>
-<h3 id="删除平衡操作"><a href="#删除平衡操作" class="headerlink" title="删除平衡操作"></a>删除平衡操作</h3><p>删除操作分两个步骤完成</p>
+<h2 id="删除平衡操作"><a href="#删除平衡操作" class="headerlink" title="删除平衡操作"></a>删除平衡操作</h2><p>删除操作分两个步骤完成</p>
 <ol>
 <li>初步调整：使其满足从每个节点从其自身达到叶子结点的所有路径，都含有相同数量的黑色节点</li>
 <li>二次调整：使其满足红色节点不相邻</li>
 </ol>
-<h4 id="初步调整"><a href="#初步调整" class="headerlink" title="初步调整"></a>初步调整</h4><h5 id="CASE1：删除的节点a只有一个子节点"><a href="#CASE1：删除的节点a只有一个子节点" class="headerlink" title="CASE1：删除的节点a只有一个子节点"></a>CASE1：删除的节点a只有一个子节点</h5><p>被删除的节点需要为黑色，其子节点为红色，这样才能保证满足红黑树的定义</p>
+<h3 id="初步调整"><a href="#初步调整" class="headerlink" title="初步调整"></a>初步调整</h3><h4 id="CASE1：删除的节点a只有一个子节点"><a href="#CASE1：删除的节点a只有一个子节点" class="headerlink" title="CASE1：删除的节点a只有一个子节点"></a>CASE1：删除的节点a只有一个子节点</h4><p>被删除的节点需要为黑色，其子节点为红色，这样才能保证满足红黑树的定义</p>
 <ol>
 <li><p>删除节点a，并将其子节点替b换到a的位置</p>
 </li>
@@ -67,7 +67,7 @@
 <p><img src="https://static001.geekbang.org/resource/image/a6/c3/a6c4c347b7cbdf57662bab399ed36cc3.jpg" alt="CASE1"></p>
 </li>
 </ol>
-<h5 id="CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c"><a href="#CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c" class="headerlink" title="CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c"></a>CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c</h5><ol>
+<h4 id="CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c"><a href="#CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c" class="headerlink" title="CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c"></a>CASE2：删除的节点a有两个非空子节点，且其后继节点即为其右子节点c</h4><ol>
 <li><p>因为关注节点a的后继节点即为其右子节点c，所以节点c不会有左子树；将节点a删除，并将其右子节点c替换至节点a的位置，修改节点c为节点a的颜色</p>
 </li>
 <li><p>如果节点c原来的颜色为黑色，则不满足最后一条的特性，需要将节点c的右子节点d多加一个黑色，即“红黑”或者“黑黑”</p>
@@ -76,7 +76,7 @@
 <p><img src="https://static001.geekbang.org/resource/image/48/4e/48e3bd2cdd66cb635f8a4df8fb8fd64e.jpg" alt="CASE2"></p>
 </li>
 </ol>
-<h5 id="CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点"><a href="#CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点" class="headerlink" title="CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点"></a>CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点</h5><ol>
+<h4 id="CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点"><a href="#CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点" class="headerlink" title="CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点"></a>CASE3：删除的节点a有两个非空子节点，且其后继节点不是其右子节点</h4><ol>
 <li><p>找到节点a的后继节点d，将节点d替换至节点a，并修改其颜色与节点a相同，然后将节点d删除（删除方法参照CASE1）</p>
 </li>
 <li><p>如果节点d原来的颜色是黑色，则不满足最后一条的特性，需要将现节点d的右子节点c多加一个黑色，即“红黑”或者“黑黑”</p>
@@ -85,8 +85,8 @@
 <p><img src="https://static001.geekbang.org/resource/image/b9/29/b93c1fa4de16aee5482424ddf49f3c29.jpg" alt="CASE3"></p>
 </li>
 </ol>
-<h4 id="二次调整"><a href="#二次调整" class="headerlink" title="二次调整"></a>二次调整</h4><p>初步调整之后，关注节点的颜色为“红黑”或者“黑黑”</p>
-<h5 id="CASE1：关注节点a的兄弟节点c颜色是红色的"><a href="#CASE1：关注节点a的兄弟节点c颜色是红色的" class="headerlink" title="CASE1：关注节点a的兄弟节点c颜色是红色的"></a>CASE1：关注节点a的兄弟节点c颜色是红色的</h5><ol>
+<h3 id="二次调整"><a href="#二次调整" class="headerlink" title="二次调整"></a>二次调整</h3><p>初步调整之后，关注节点的颜色为“红黑”或者“黑黑”</p>
+<h4 id="CASE1：关注节点a的兄弟节点c颜色是红色的"><a href="#CASE1：关注节点a的兄弟节点c颜色是红色的" class="headerlink" title="CASE1：关注节点a的兄弟节点c颜色是红色的"></a>CASE1：关注节点a的兄弟节点c颜色是红色的</h4><ol>
 <li><p>围绕节点a的父节点b进行左旋</p>
 </li>
 <li><p>关注节点a的父节点b和祖父节c点交换颜色</p>
@@ -95,7 +95,7 @@
 <p><img src="https://static001.geekbang.org/resource/image/ac/91/ac76d78c064a2486e2a5b4c4903acb91.jpg" alt="CASE1"></p>
 </li>
 </ol>
-<h5 id="CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色"><a href="#CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色" class="headerlink" title="CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色"></a>CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色</h5><ol>
+<h4 id="CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色"><a href="#CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色" class="headerlink" title="CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色"></a>CASE2：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左右子节点d、e都是黑色</h4><ol>
 <li><p>将节点a的兄弟节点c变更为红色</p>
 </li>
 <li><p>将节点a中去掉一个黑色，此时节点a便变成了单纯的红色或者黑色</p>
@@ -108,7 +108,7 @@
 <p><img src="https://static001.geekbang.org/resource/image/ec/ec/eca118d673c607eb2b103f3476fb24ec.jpg" alt="CASE2"></p>
 </li>
 </ol>
-<h5 id="CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的"><a href="#CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的" class="headerlink" title="CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的"></a>CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的</h5><ol>
+<h4 id="CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的"><a href="#CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的" class="headerlink" title="CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的"></a>CASE3：关注节点a的兄弟节点c颜色是黑色的，并且节点c的左子节点d是红色，右子节点e是黑色的</h4><ol>
 <li><p>围绕节点a的兄弟节点c右旋</p>
 </li>
 <li><p>节点c和节点d交换颜色</p>
@@ -117,7 +117,7 @@
 <p><img src="https://static001.geekbang.org/resource/image/44/af/44075213100edd70315e1492422c92af.jpg" alt="CASE3"></p>
 </li>
 </ol>
-<h5 id="CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的"><a href="#CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的" class="headerlink" title="CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的"></a>CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的</h5><ol>
+<h4 id="CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的"><a href="#CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的" class="headerlink" title="CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的"></a>CASE4：关注节点的兄弟节点颜色是黑色的，并且兄弟节点的右子节点是红色的</h4><ol>
 <li><p>围绕节点a父节点b左旋</p>
 </li>
 <li><p>将节点c的颜色设置为节点b的颜色</p>
@@ -132,4 +132,4 @@
 <p><img src="https://static001.geekbang.org/resource/image/5f/44/5f73f61bf77a7f2bb75f168cf432ec44.jpg" alt="CASE4"></p>
 </li>
 </ol>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-04-17</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据结构/" title="数据结构">数据结构 </a><a class="tag" href="/tags/非线性表/" title="非线性表">非线性表 </a><a class="tag" href="/tags/树/" title="树">树 </a><a class="tag" href="/tags/二叉树/" title="二叉树">二叉树 </a><a class="tag" href="/tags/红黑树/" title="红黑树">红黑树 </a><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E5%A0%86/" title="数据结构-非线性表-堆">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/04/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E4%BA%8C%E5%8F%89%E6%A0%91/" title="数据结构-非线性表-二叉树">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-04-17</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据结构/" title="数据结构">数据结构 </a><a class="tag" href="/tags/非线性表/" title="非线性表">非线性表 </a><a class="tag" href="/tags/树/" title="树">树 </a><a class="tag" href="/tags/二叉树/" title="二叉树">二叉树 </a><a class="tag" href="/tags/红黑树/" title="红黑树">红黑树 </a><span class="leancloud_visitors"></span></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E5%A0%86/" title="数据结构-非线性表-堆">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/04/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E4%BA%8C%E5%8F%89%E6%A0%91/" title="数据结构-非线性表-二叉树">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
