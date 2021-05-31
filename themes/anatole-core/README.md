@@ -20,7 +20,7 @@ Demo : https://www.jixian.io
 ## 使用
 
 ### 安装
-``` 
+```
 git clone https://github.com/mrcore/hexo-theme-Anatole-Core.git themes/anatole-core
 
 或者直接下载主题zip包解压至主题目录下，重命名为anatole-core
@@ -37,7 +37,7 @@ npm install hexo-renderer-pug --save
 其他需要配置的地方请看 `themes/anatole-core/_comfig.yml`
 
 ### 更新
-``` 
+```
 cd themes/anatole-core
 git pull
 ```
