@@ -1,148 +1,65 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lu"><title>云服务器安装Oracle · 这里是lu</title><meta name="description" content="系统准备
-wget -c --http-user=用户名 --http-password=密码--output-document=输出名称 &amp;quot;下载地址&amp;quot; -o 日志名 &amp;amp;
-1234567   Oracle下载需要提供用户名密码，提前注册好，下载地址可以在本地浏览器获取2."><meta name="keywords" content="lu的博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">这里是lu</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/EverySeptember"><i class="fa fa-github"></i></a></li></ul><div class="footer"><div class="p"> <span>©  </span><i class="fa fa-star"></i><span> lu</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>云服务器安装Oracle</a></h3></div><div class="post-content"><h1 id="系统准备"><a href="#系统准备" class="headerlink" title="系统准备"></a>系统准备</h1><ol>
-<li><pre><code>wget -c --http-user=用户名 --http-password=密码--output-document=输出名称 &quot;下载地址&quot; -o 日志名 &amp;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   Oracle下载需要提供用户名密码，提前注册好，下载地址可以在本地浏览器获取</span><br><span class="line"></span><br><span class="line">2. 配置内存</span><br><span class="line"></span><br><span class="line">   首先查看内存是否满足使用要求：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-[root@lu opt]# free -m
-              total        used        free      shared  buff/cache   available
-Mem:           1839          81         713           0        1044        1593
-Swap:             0           0           0
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">oracle的安装启动需要足够的交换分区，云服务器并没有配置交换分区，所以需要手动配置，如下便配置了一个2g的交换分区</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-[root@lu opt]# dd if=/dev/zero of=/mnt/swap bs=2M count=1024
-1024+0 records in
-1024+0 records out
-2147483648 bytes (2.1 GB) copied, 19.0152 s, 113 MB/s
-[root@lu opt]# mkswap /mnt/swap
-Setting up swapspace version 1, size = 2097148 KiB
-no label, UUID=f017d5b7-ef9b-4f3f-95c3-5b503311416b
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">启动交换分区</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-[root@lu opt]# swapon /mnt/swap
-swapon: /mnt/swap: insecure permissions 0644, 0600 suggested.
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">修改交换分区配置：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-在 /etc/fstab 文件中增加或修改swap行,
-#开机启动swap:
-/mnt/swap swap swap defaults 0 0
-#修改默认配置，防止ORA-00845: MEMORY_TARGET not supported on this system错误
-tmpfs /dev/shm tmpfs defaults,size=10240M 0 0
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">重启系统</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-reboot
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 软件环境</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-yum -y install binutils compat-libstdc++ compat-libstdc++-33elfutils-libelf-devel gcc gcc-c++ glibc-devel glibc-headers ksh libaio-devellibstdc++-devel make sysstat unixODBC-devel binutils-* compat-libstdc++*elfutils-libelf* glibc* gcc-* libaio* libgcc* libstdc++* make* sysstat*unixODBC* wget unzip
+下载
+1wget -c --http-user=用户名 --http-password=密码--output-document=输出名称 &amp;quot;下载地址&amp;quot; -o 日志名 &amp;amp;
 
-yum clean all
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">文件解压缩</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-unzip 文件名
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 内核参数配置</span><br><span class="line"></span><br><span class="line">   在/etc/sysctl.conf添加</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-kernel.shmmni = 4096
-kernel.sem = 250 32000 100 128
-net.ipv4.ip_local_port_range = 9000 65500
-net.core.rmem_default = 262144
-net.core.rmem_max = 4194304
-net.core.wmem_default = 262144
-net.core.wmem_max = 1048576
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">加载参数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-sysctl -p
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">5. 用户配置</span><br><span class="line"></span><br><span class="line">   1. 创建账号</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-   安装组
-   groupadd 安装组名
-   管理组
-   groupadd 管理组名
-   运行用户
-   useradd -G 安装组名 -G 管理组名 运行用户名
-   密码
-   passwd 密码
-   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 调整用户变量</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-   在~用户名/.bash_profile最后添加
-   umask 022
-   export LC_ALL=zh_CN.UTF-8
-   export PATH=$PATH:/oracle安装目标位置/product/11gr2/dbhome_1/bin
-   export ORACLE_HOME=/oracle安装目标位置/product/11gr2/dbhome_1
-   export ORACLE_SID=orcl
-   
-   加载文件
-   source ~用户名/.bash_profile
-   
-   在/etc/profile添加
-   export PATH=$PATH:/oracle安装目标位置/product/11gr2/dbhome_1/bin
-   export ORACLE_HOME=/oracle安装目标位置/product/11gr2/dbhome_1
-   export ORACLE_SID=orcl
-   
-   更新系统环境
-   source /etc/profile
-   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 调整会话限制</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-   在/etc/pam.d/login添加
-   session    required    pam_limits.so
-   
-   在/etc/security/limits.conf添加
-   oracle        soft    nproc    8192
-   oracle        hard    nproc    16384
-   oracle        soft    nofile   32768
-   oracle        hard    nofile   65536
-   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 安装步骤</span><br><span class="line"></span><br><span class="line">1. 创建安装目录</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-mkdir -p /data/oracle
-#给文件夹赋所属用户
-chown -R 用户名.安装用户组名 /data/oracle/
-#给文件夹赋权限
-chmod -R 775 /data/oracle/
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 编辑应答文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-#打开oracle解压目录下/response目录
-#编辑安装应答文件，vi db_install.rsp
-oracle.install.option=INSTALL_DB_SWONLY                #安装模式：只装数据库软件
-UNIX_GROUP_NAME=安装用户组名                          #指定oracle inventory的所有者
-SELECTED_LANGUAGES=en,zh_CN                          #配置安装语言
-INVENTORY_LOCATION=/data/oracle/oraInventory         #指定产品清单oracle inventory目录的路径
-ORACLE_HOME=/data/oracle/product/11gr2/dbhome_1      #配置ORALCE_HOME目录
-ORACLE_BASE=/data/oracle                             #配置ORALCE_BASE目录
-oracle.install.db.InstallEdition=EE                  #配置安装版本：企业版
-oracle.install.db.DBA_GROUP=管理用户组名              #配置拥有dba权限的用户组
-oracle.install.db.OPER_GROUP=管理用户组名             #配置拥有oper权限的用户组
-DECLINE_SECURITY_UPDATES=true                        #配置是否开启安全更新
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 安装软件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-#切换至oracle用户
-su oracle用户名
-#运行安装脚本
-./runInstaller -silent -debug -force -ignorePrereq -responseFile /opt/database/response/db_install.rsp
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 启动</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-#启动监听
-netca /silent /responsefile /opt/database/response/netca.rsp
+Oracle下载需要提供用户名密码，提前注册好，下载地址可以在本地浏览器获取
 
-#启动服务
-lsnrctl start
+配置内存
+"><meta name="keywords" content="lu的博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">这里是lu</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/EverySeptember"><i class="fa fa-github"></i></a></li></ul><div class="footer"><div class="p"> <span>©  </span><i class="fa fa-star"></i><span> lu</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>云服务器安装Oracle</a></h3></div><div class="post-content"><h1 id="系统准备"><a href="#系统准备" class="headerlink" title="系统准备"></a>系统准备</h1><ol>
+<li><p>下载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c --http-user=用户名 --http-password=密码--output-document=输出名称 &quot;下载地址&quot; -o 日志名 &amp;</span><br></pre></td></tr></table></figure>
 
-#查看状态
-lsnrctl status
-
-#查看监听端口
-netstat -naptlu | grep 1521
-
-状态正常则可继续安装数据库
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">5. 安装数据库</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-#在root权限下copy数据库安装响应文件至oracle用户目录下
-cp /opt/database/response/dbca.rsp ~oracle用户名
-
-#更改权限
-chown -R oracleuser.orainstall ~oracle用户名/dbca.rsp
-chmod -R 775 ~oracle用户名/dbca.rsp
-
-#修改响应文件
-GDBNAME = &quot;全局数据库的名字=SID+名&quot;
-SID=&quot;orcl&quot; // SID
-CHARACTERSET=&quot;AL32UTF8&quot; //编码
-NATIONALCHARACTERSET=&quot;UTF8&quot; //编码
-SYSPASSWORD = &quot;//密码&quot;
-SYSTEMPASSWORD = &quot;//密码&quot;
-
-#切换至oracle用户，安装数据库
-dbca -silent -responseFile ~/dbca.rsp
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">6. 启动数据库</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-#连接sqlplus
-sqlplus dba用户名/dba密码 as sysdba
-#启动数据库
-startup
-#修改用户密码有效期
-ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
-</code></pre>
+<p>Oracle下载需要提供用户名密码，提前注册好，下载地址可以在本地浏览器获取</p>
 </li>
+<li><p>配置内存</p>
+<p>首先查看内存是否满足使用要求：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@lu opt]# free -m</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:           1839          81         713           0        1044        1593</span><br><span class="line">Swap:             0           0           0</span><br></pre></td></tr></table></figure>
+
+<p>oracle的安装启动需要足够的交换分区，云服务器并没有配置交换分区，所以需要手动配置，如下便配置了一个2g的交换分区</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@lu opt]# dd if=/dev/zero of=/mnt/swap bs=2M count=1024</span><br><span class="line">1024+0 records in</span><br><span class="line">1024+0 records out</span><br><span class="line">2147483648 bytes (2.1 GB) copied, 19.0152 s, 113 MB/s</span><br><span class="line">[root@lu opt]# mkswap /mnt/swap</span><br><span class="line">Setting up swapspace version 1, size = 2097148 KiB</span><br><span class="line">no label, UUID=f017d5b7-ef9b-4f3f-95c3-5b503311416b</span><br></pre></td></tr></table></figure>
+
+<p>启动交换分区</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@lu opt]# swapon /mnt/swap</span><br><span class="line">swapon: /mnt/swap: insecure permissions 0644, 0600 suggested.</span><br></pre></td></tr></table></figure>
+
+<p>修改交换分区配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在 /etc/fstab 文件中增加或修改swap行,</span><br><span class="line"><span class="meta">#</span><span class="bash">开机启动swap:</span></span><br><span class="line">/mnt/swap swap swap defaults 0 0</span><br><span class="line"><span class="meta">#</span><span class="bash">修改默认配置，防止ORA-00845: MEMORY_TARGET not supported on this system错误</span></span><br><span class="line">tmpfs /dev/shm tmpfs defaults,size=10240M 0 0</span><br></pre></td></tr></table></figure>
+
+<p>重启系统</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure></li>
+<li><p>软件环境</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y install binutils compat-libstdc++ compat-libstdc++-33elfutils-libelf-devel gcc gcc-c++ glibc-devel glibc-headers ksh libaio-devellibstdc++-devel make sysstat unixODBC-devel binutils-* compat-libstdc++*elfutils-libelf* glibc* gcc-* libaio* libgcc* libstdc++* make* sysstat*unixODBC* wget unzip</span><br><span class="line"></span><br><span class="line">yum clean all</span><br></pre></td></tr></table></figure>
+<p>文件解压缩</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip 文件名</span><br></pre></td></tr></table></figure></li>
+<li><p>内核参数配置</p>
+<p>在/etc/sysctl.conf添加</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kernel.shmmni = <span class="number">4096</span></span><br><span class="line">kernel.sem = <span class="number">250</span> <span class="number">32000</span> <span class="number">100</span> <span class="number">128</span></span><br><span class="line">net.ipv4.ip_local_port_range = <span class="number">9000</span> <span class="number">65500</span></span><br><span class="line">net.core.rmem_default = <span class="number">262144</span></span><br><span class="line">net.core.rmem_max = <span class="number">4194304</span></span><br><span class="line">net.core.wmem_default = <span class="number">262144</span></span><br><span class="line">net.core.wmem_max = <span class="number">1048576</span></span><br></pre></td></tr></table></figure>
+
+<p>加载参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure></li>
+<li><p>用户配置</p>
+<ol>
+<li><p>创建账号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">安装组</span><br><span class="line">groupadd 安装组名</span><br><span class="line">管理组</span><br><span class="line">groupadd 管理组名</span><br><span class="line">运行用户</span><br><span class="line">useradd -G 安装组名 -G 管理组名 运行用户名</span><br><span class="line">密码</span><br><span class="line">passwd 密码</span><br></pre></td></tr></table></figure></li>
+<li><p>调整用户变量</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">在~用户名/.bash_profile最后添加</span><br><span class="line">umask <span class="number">022</span></span><br><span class="line">export LC_ALL=zh_CN.UTF-<span class="number">8</span></span><br><span class="line">export PATH=$PATH:/oracle安装目标位置/product/<span class="number">11</span>gr2/dbhome_1/bin</span><br><span class="line">export ORACLE_HOME=/oracle安装目标位置/product/<span class="number">11</span>gr2/dbhome_1</span><br><span class="line">export ORACLE_SID=orcl</span><br><span class="line"></span><br><span class="line">加载文件</span><br><span class="line"><span class="keyword">source</span> ~用户名/.bash_profile</span><br><span class="line"></span><br><span class="line">在/etc/<span class="keyword">profile</span>添加</span><br><span class="line">export PATH=$PATH:/oracle安装目标位置/product/<span class="number">11</span>gr2/dbhome_1/bin</span><br><span class="line">export ORACLE_HOME=/oracle安装目标位置/product/<span class="number">11</span>gr2/dbhome_1</span><br><span class="line">export ORACLE_SID=orcl</span><br><span class="line"></span><br><span class="line">更新系统环境</span><br><span class="line"><span class="keyword">source</span> /etc/<span class="keyword">profile</span></span><br></pre></td></tr></table></figure></li>
+<li><p>调整会话限制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">在/etc/pam.d/login添加</span><br><span class="line">session    required    pam_limits.so</span><br><span class="line"></span><br><span class="line">在/etc/security/limits.conf添加</span><br><span class="line">oracle        soft    nproc    8192</span><br><span class="line">oracle        hard    nproc    16384</span><br><span class="line">oracle        soft    nofile   32768</span><br><span class="line">oracle        hard    nofile   65536</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><ol>
+<li><p>创建安装目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/oracle</span><br><span class="line"><span class="meta">#</span><span class="bash">给文件夹赋所属用户</span></span><br><span class="line">chown -R 用户名.安装用户组名 /data/oracle/</span><br><span class="line"><span class="meta">#</span><span class="bash">给文件夹赋权限</span></span><br><span class="line">chmod -R 775 /data/oracle/</span><br></pre></td></tr></table></figure></li>
+<li><p>编辑应答文件</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#打开oracle解压目录下/response目录</span><br><span class="line">#编辑安装应答文件，<span class="keyword">vi</span> db_install.rsp</span><br><span class="line">oracle.install.option=INSTALL_DB_SWONLY			    #安装模式：只装数据库软件</span><br><span class="line">UNIX_GROUP_NAME=安装用户组名						  #指定oracle inventory的所有者</span><br><span class="line">SELECTED_LANGUAGES=<span class="keyword">en</span>,zh_CN                          #配置安装语言</span><br><span class="line">INVENTORY_LOCATION=/data/oracle/oraInventory         #指定产品清单oracle inventory目录的路径</span><br><span class="line">ORACLE_HOME=/data/oracle/product/<span class="number">11</span>gr2/dbhome_1      #配置ORALCE_HOME目录</span><br><span class="line">ORACLE_BASE=/data/oracle                             #配置ORALCE_BASE目录</span><br><span class="line">oracle.install.db.InstallEdition=EE                  #配置安装版本：企业版</span><br><span class="line">oracle.install.db.DBA_GROUP=管理用户组名              #配置拥有dba权限的用户组</span><br><span class="line">oracle.install.db.OPER_GROUP=管理用户组名             #配置拥有oper权限的用户组</span><br><span class="line">DECLINE_SECURITY_UPDATES=true                        #配置是否开启安全更新</span><br></pre></td></tr></table></figure></li>
+<li><p>安装软件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">切换至oracle用户</span></span><br><span class="line">su oracle用户名</span><br><span class="line"><span class="meta">#</span><span class="bash">运行安装脚本</span></span><br><span class="line">./runInstaller -silent -debug -force -ignorePrereq -responseFile /opt/database/response/db_install.rsp</span><br></pre></td></tr></table></figure></li>
+<li><p>启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">启动监听</span></span><br><span class="line">netca /silent /responsefile /opt/database/response/netca.rsp</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">启动服务</span></span><br><span class="line">lsnrctl start</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">查看状态</span></span><br><span class="line">lsnrctl status</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">查看监听端口</span></span><br><span class="line">netstat -naptlu | grep 1521</span><br><span class="line"></span><br><span class="line">状态正常则可继续安装数据库</span><br></pre></td></tr></table></figure></li>
+<li><p>安装数据库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">在root权限下copy数据库安装响应文件至oracle用户目录下</span></span><br><span class="line">cp /opt/database/response/dbca.rsp ~oracle用户名</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">更改权限</span></span><br><span class="line">chown -R oracleuser.orainstall ~oracle用户名/dbca.rsp</span><br><span class="line">chmod -R 775 ~oracle用户名/dbca.rsp</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">修改响应文件</span></span><br><span class="line">GDBNAME = &quot;全局数据库的名字=SID+名&quot;</span><br><span class="line">SID=&quot;orcl&quot; // SID</span><br><span class="line">CHARACTERSET=&quot;AL32UTF8&quot; //编码</span><br><span class="line">NATIONALCHARACTERSET=&quot;UTF8&quot; //编码</span><br><span class="line">SYSPASSWORD = &quot;//密码&quot;</span><br><span class="line">SYSTEMPASSWORD = &quot;//密码&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">切换至oracle用户，安装数据库</span></span><br><span class="line">dbca -silent -responseFile ~/dbca.rsp</span><br></pre></td></tr></table></figure></li>
+<li><p>启动数据库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">连接sqlplus</span></span><br><span class="line">sqlplus dba用户名/dba密码 as sysdba</span><br><span class="line"><span class="meta">#</span><span class="bash">启动数据库</span></span><br><span class="line">startup</span><br><span class="line"><span class="meta">#</span><span class="bash">修改用户密码有效期</span></span><br><span class="line">ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h1 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h1><p>在云上安装oracle之后，由于许多云服务默认将1521端口关闭，需配置打开才可以远程连接。</p>
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ol>
