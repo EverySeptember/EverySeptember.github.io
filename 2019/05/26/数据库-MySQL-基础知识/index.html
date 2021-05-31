@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lu"><title>MySQL调优-基础知识 · 这里是lu</title><meta name="description" content="影响MySQL性能的主要因素
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lu"><title>MySQL调优-基础知识 · 这里是lu</title><meta name="description" content="MySQL调优-基础知识影响MySQL性能的主要因素
 数据库结构设计
 数据库存储引擎
 SQL语句的书写
@@ -8,50 +8,48 @@ SQL语句的书写
 数据库结构设计三范式
 数据库中每个字段只包含一个独立且不可拆分的属性
 满足第一范式，必须有一个主键，且其他字段必须与主键有关系
-满足第二范式，所有字段与主键直接相关，而不是间接相关
-
-"><meta name="keywords" content="lu的博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">这里是lu</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/EverySeptember"><i class="fa fa-github"></i></a></li></ul><div class="footer"><div class="p"> <span>©  </span><i class="fa fa-star"></i><span> lu</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div><div class="beian"><a href="http://www.beian.miit.gov.cn/" target="_blank"></a><span style="height:10px;margin-left: 10px;">|</span><img src="/images/gongan.png" style="height:10px;margin-left: 10px;position: relative;top: 1px;"><span style="margin-left: 2px;"></span></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about">关于</a></li><li><a href="/guestbook">留言</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>MySQL调优-基础知识</a></h3></div><div class="post-content"><h3 id="影响MySQL性能的主要因素"><a href="#影响MySQL性能的主要因素" class="headerlink" title="影响MySQL性能的主要因素"></a>影响MySQL性能的主要因素</h3><ul>
+满足第二范式，所有字段与主键直接"><meta name="keywords" content="lu的博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">这里是lu</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/EverySeptember"><i class="fa fa-github"></i></a></li></ul><div class="footer"><div class="p"> <span>©  </span><i class="fa fa-star"></i><span> lu</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about">关于</a></li><li><a href="/guestbook">留言</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>MySQL调优-基础知识</a></h3></div><div class="post-content"><h1 id="MySQL调优-基础知识"><a href="#MySQL调优-基础知识" class="headerlink" title="MySQL调优-基础知识"></a>MySQL调优-基础知识</h1><h2 id="影响MySQL性能的主要因素"><a href="#影响MySQL性能的主要因素" class="headerlink" title="影响MySQL性能的主要因素"></a>影响MySQL性能的主要因素</h2><ul>
 <li>数据库结构设计</li>
 <li>数据库存储引擎</li>
 <li>SQL语句的书写</li>
 <li>数据库参数配置</li>
 <li>服务器系统和硬件</li>
 </ul>
-<h3 id="数据库结构设计"><a href="#数据库结构设计" class="headerlink" title="数据库结构设计"></a>数据库结构设计</h3><h4 id="三范式"><a href="#三范式" class="headerlink" title="三范式"></a>三范式</h4><ol>
+<h2 id="数据库结构设计"><a href="#数据库结构设计" class="headerlink" title="数据库结构设计"></a>数据库结构设计</h2><h3 id="三范式"><a href="#三范式" class="headerlink" title="三范式"></a>三范式</h3><ol>
 <li>数据库中每个字段只包含一个独立且不可拆分的属性</li>
 <li>满足第一范式，必须有一个主键，且其他字段必须与主键有关系</li>
 <li>满足第二范式，所有字段与主键直接相关，而不是间接相关</li>
 </ol>
-<h5 id="反范式设计"><a href="#反范式设计" class="headerlink" title="反范式设计"></a>反范式设计</h5><p>表设计不一定完全按照范式进行设计，在特定情况下可根据业务需求进行一些反范式的设计。</p>
-<h6 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h6><ol>
+<h4 id="反范式设计"><a href="#反范式设计" class="headerlink" title="反范式设计"></a>反范式设计</h4><p>表设计不一定完全按照范式进行设计，在特定情况下可根据业务需求进行一些反范式的设计。</p>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ol>
 <li>单表查询易于优化，益于管理</li>
 <li>SQL语句简单，有利于程序开发</li>
 </ol>
-<h6 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h6><ol>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ol>
 <li>存在数据冗余，写操作时需要额外更新从表数据</li>
 <li>不合理的反范式设计会让表变得臃肿</li>
 </ol>
-<h4 id="实体关系分析"><a href="#实体关系分析" class="headerlink" title="实体关系分析"></a>实体关系分析</h4><ul>
+<h3 id="实体关系分析"><a href="#实体关系分析" class="headerlink" title="实体关系分析"></a>实体关系分析</h3><ul>
 <li>实体关系是指系统事物之间的联系</li>
 <li>实体关系需要双向分析</li>
 <li>实体关系决定表关系</li>
 </ul>
-<h5 id="表关系设计原则"><a href="#表关系设计原则" class="headerlink" title="表关系设计原则"></a>表关系设计原则</h5><ul>
+<h4 id="表关系设计原则"><a href="#表关系设计原则" class="headerlink" title="表关系设计原则"></a>表关系设计原则</h4><ul>
 <li>一对一，通过主键关联</li>
 <li>一对多，在多的一方设置外键</li>
 <li>多对多，增加中间表，持有双方外键</li>
 </ul>
-<h4 id="自然主键与代理主键"><a href="#自然主键与代理主键" class="headerlink" title="自然主键与代理主键"></a>自然主键与代理主键</h4><ul>
+<h3 id="自然主键与代理主键"><a href="#自然主键与代理主键" class="headerlink" title="自然主键与代理主键"></a>自然主键与代理主键</h3><ul>
 <li>自然主键是指事务属性中的自然唯一标示</li>
 <li>代理主键是指与业务无关的，无意义的数字序列值</li>
 <li>表设计时，优先推荐代理主键，不推荐自然主键</li>
 </ul>
-<h4 id="数据类型的选择"><a href="#数据类型的选择" class="headerlink" title="数据类型的选择"></a>数据类型的选择</h4><h5 id="字段类型优先级"><a href="#字段类型优先级" class="headerlink" title="字段类型优先级"></a>字段类型优先级</h5><ol>
+<h3 id="数据类型的选择"><a href="#数据类型的选择" class="headerlink" title="数据类型的选择"></a>数据类型的选择</h3><h4 id="字段类型优先级"><a href="#字段类型优先级" class="headerlink" title="字段类型优先级"></a>字段类型优先级</h4><ol>
 <li>数字类型</li>
 <li>日期类型与二进制类型</li>
 <li>字符串类型</li>
 </ol>
-<h5 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h5><table>
+<h4 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h4><table>
 <thead>
 <tr>
 <th>列类型</th>
@@ -91,7 +89,7 @@ SQL语句的书写
 <td>0 ~ 18446744073709551615</td>
 </tr>
 </tbody></table>
-<h5 id="实数类型"><a href="#实数类型" class="headerlink" title="实数类型"></a>实数类型</h5><table>
+<h4 id="实数类型"><a href="#实数类型" class="headerlink" title="实数类型"></a>实数类型</h4><table>
 <thead>
 <tr>
 <th>列类型</th>
@@ -116,36 +114,36 @@ SQL语句的书写
 </tr>
 </tbody></table>
 <p>财务数据一定要使用DECIMAL</p>
-<h5 id="VARCHAR类型"><a href="#VARCHAR类型" class="headerlink" title="VARCHAR类型"></a>VARCHAR类型</h5><p>VARCHAR表示变体长度，根据实际内容保存数据</p>
+<h4 id="VARCHAR类型"><a href="#VARCHAR类型" class="headerlink" title="VARCHAR类型"></a>VARCHAR类型</h4><p>VARCHAR表示变体长度，根据实际内容保存数据</p>
 <ol>
 <li>尽量使用最小的符合需求的长度</li>
 <li>VARCHAR(255)以下使用额外一个字节保存实际内容长度，VARCHAR(255)以上额外使用两个字节保存实际内容长度；所以255是一个常见的长度分水岭</li>
 <li>虽然在磁盘存储的角度上，VARCHAR(5)与VARCHAR(200)实际存储内容长度可能相同，但内存占用不同，长度越长需要占用的内存越多</li>
 <li>VARCHAR变更长度时会出现锁表</li>
 </ol>
-<h6 id="VARCHAR的适用场景"><a href="#VARCHAR的适用场景" class="headerlink" title="VARCHAR的适用场景"></a>VARCHAR的适用场景</h6><ul>
+<h5 id="VARCHAR的适用场景"><a href="#VARCHAR的适用场景" class="headerlink" title="VARCHAR的适用场景"></a>VARCHAR的适用场景</h5><ul>
 <li>VARCHAR适合存储长度波动大的数据（如博客文章）</li>
 <li>字符串很少被更新的场景</li>
 <li>VARCHAR适合保存多字节字符</li>
 </ul>
-<h5 id="CHAR类型"><a href="#CHAR类型" class="headerlink" title="CHAR类型"></a>CHAR类型</h5><ul>
+<h4 id="CHAR类型"><a href="#CHAR类型" class="headerlink" title="CHAR类型"></a>CHAR类型</h4><ul>
 <li>CHAR属于定长数据</li>
 <li>CHAR最大长度255</li>
 <li>CHAR类型会自动删除末尾的空格</li>
 <li>CHAR类型检索效率比VARCHAR高</li>
 </ul>
-<h6 id="CHAR的适用场景"><a href="#CHAR的适用场景" class="headerlink" title="CHAR的适用场景"></a>CHAR的适用场景</h6><ul>
+<h5 id="CHAR的适用场景"><a href="#CHAR的适用场景" class="headerlink" title="CHAR的适用场景"></a>CHAR的适用场景</h5><ul>
 <li>CHAR适合存储长度波动不大的数据，如MD5</li>
 <li>CHAR适合存储短字符串</li>
 <li>CHAR适合存储经常更新的字符串</li>
 </ul>
-<h5 id="DATETIME类型"><a href="#DATETIME类型" class="headerlink" title="DATETIME类型"></a>DATETIME类型</h5><ul>
+<h4 id="DATETIME类型"><a href="#DATETIME类型" class="headerlink" title="DATETIME类型"></a>DATETIME类型</h4><ul>
 <li>占用8个字节</li>
 <li>与时区无关</li>
 <li>可保存到毫秒</li>
 <li>可保存时间范围大</li>
 </ul>
-<h5 id="TIMESTAMP时间戳类型"><a href="#TIMESTAMP时间戳类型" class="headerlink" title="TIMESTAMP时间戳类型"></a>TIMESTAMP时间戳类型</h5><ul>
+<h4 id="TIMESTAMP时间戳类型"><a href="#TIMESTAMP时间戳类型" class="headerlink" title="TIMESTAMP时间戳类型"></a>TIMESTAMP时间戳类型</h4><ul>
 <li>占用4个字节</li>
 <li>时间范围：1970-01-01到2038-01-19</li>
 <li>精确到秒</li>
@@ -153,4 +151,4 @@ SQL语句的书写
 <li>依赖于时区</li>
 <li>自动更新timestamp列值</li>
 </ul>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-05-26</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/MySQL/" title="MySQL">MySQL </a><a class="tag" href="/tags/MySQL基础/" title="MySQL基础">MySQL基础 </a><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://everyseptember.github.io/2019/05/26/数据库-MySQL-基础知识/,这里是lu,MySQL调优-基础知识,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/05/26/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" title="MySQL调优-存储引擎">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E5%A0%86/" title="数据结构-非线性表-堆">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-05-26</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/MySQL/" title="MySQL">MySQL </a><a class="tag" href="/tags/MySQL基础/" title="MySQL基础">MySQL基础 </a><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/05/26/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" title="MySQL调优-存储引擎">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E5%A0%86/" title="数据结构-非线性表-堆">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
