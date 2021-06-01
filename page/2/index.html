@@ -3,7 +3,7 @@
 set [session] 参数名 = 参数值; #设置当前会话（连接）参数
 set global 参数名 = 参数值; #设置全局参数，部分设置需要新建会话才生效
 设置应用配置文件
-Windows下将配置文件m...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-24</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/MySQL/" title="MySQL">MySQL </a><a class="tag" href="/tags/参数配置/" title="参数配置">参数配置 </a><span class="leancloud_visitors"></span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/23/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/">MySQL调优-分库分表</a></h3></div><div class="post-content"><p>分区表分区表就是把大表按条件单独存储到不同的物理小表中，在构建出的完整逻辑表
+Windows下将配置文件m...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-24</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/MySQL/" title="MySQL">MySQL </a><span class="leancloud_visitors"></span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/23/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/">MySQL调优-分库分表</a></h3></div><div class="post-content"><p>分区表分区表就是把大表按条件单独存储到不同的物理小表中，在构建出的完整逻辑表
 优点
 更少的数据检索范围
 拆分超级大的表，将部分数据加载至内存
@@ -12,7 +12,7 @@ Windows下将配置文件m...</p></div><div class="post-footer"><div class="meta
 减少锁的范围，避免大表锁表
 可独立备份、恢复分区数据
 
-使用方法create table () pa...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-23</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/MySQL/" title="MySQL">MySQL </a><a class="tag" href="/tags/分库分表/" title="分库分表">分库分表 </a><span class="leancloud_visitors"></span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/06/09/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%B7%A5%E5%85%B7/">MySQL调优-工具</a></h3></div><div class="post-content"><p>慢SQL日志
+使用方法create table () pa...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-23</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/MySQL/" title="MySQL">MySQL </a><span class="leancloud_visitors"></span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/06/09/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL-%E5%B7%A5%E5%85%B7/">MySQL调优-工具</a></h3></div><div class="post-content"><p>慢SQL日志
 开启慢SQL
 1set global slow_query_log = on;
 设置慢SQL执行时间阈值，以秒为单位
@@ -51,7 +51,7 @@ SQL语句的书写
 满足第一范式，必须有一个主键，且其他字段必须与主键有关系
 满足第二范式，所有字段与主键直接相关，而不是间接相关
 
-反范式设计表设...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-05-26</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/MySQL/" title="MySQL">MySQL </a><a class="tag" href="/tags/MySQL基础/" title="MySQL基础">MySQL基础 </a><span class="leancloud_visitors"></span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E5%A0%86/">数据结构-非线性表-堆</a></h3></div><div class="post-content"><p>定义
+反范式设计表设...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-05-26</span><i class="fa fa-tag"></i><a class="tag" href="/tags/基础知识/" title="基础知识">基础知识 </a><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/MySQL/" title="MySQL">MySQL </a><span class="leancloud_visitors"></span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A1%A8-%E5%A0%86/">数据结构-非线性表-堆</a></h3></div><div class="post-content"><p>定义
 完全二叉树
 每一个节点的的值都必须大于等于（或小于等于）其子树中的每个节点的值
 
