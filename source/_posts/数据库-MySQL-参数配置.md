@@ -1,7 +1,7 @@
 ---
 title: MySQL调优-参数配置
 date: 2019-7-24 20:38:29
-tags: [数据库, MySQL, 参数配置]
+tags: [数据库, MySQL]
 ---
 # 设置参数的方法
 

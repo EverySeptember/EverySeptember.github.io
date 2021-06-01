@@ -1,7 +1,7 @@
 ---
 title: MySQL调优-分库分表
 date: 2019-7-23 21:55:13
-tags: [数据库, MySQL, 分库分表]
+tags: [数据库, MySQL]
 ---
 
 

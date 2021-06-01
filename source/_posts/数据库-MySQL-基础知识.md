@@ -1,7 +1,7 @@
 ---
 title: MySQL调优-基础知识
 date: 2019-5-26 15:10:13
-tags: [数据库, MySQL, MySQL基础]
+tags: [数据库, MySQL, 基础知识]
 ---
 # 影响MySQL性能的主要因素
 
