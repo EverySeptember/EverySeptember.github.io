@@ -8,55 +8,55 @@ JSON数据"><meta name="keywords" content="lu的博客"><meta content="width=dev
 <table>
 <thead>
 <tr>
-<th>JSON数据类型</th>
-<th>dynamic: true</th>
-<th>dynamic: runtime</th>
+<th align="center">JSON数据类型</th>
+<th align="center">dynamic: true</th>
+<th align="center">dynamic: runtime</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>null</td>
-<td>不添加字段</td>
-<td>不添加字段</td>
+<td align="center">null</td>
+<td align="center">不添加字段</td>
+<td align="center">不添加字段</td>
 </tr>
 <tr>
-<td>true或者false</td>
-<td>boolean</td>
-<td>boolean</td>
+<td align="center">true或者false</td>
+<td align="center">boolean</td>
+<td align="center">boolean</td>
 </tr>
 <tr>
-<td>double</td>
-<td>float</td>
-<td>double</td>
+<td align="center">double</td>
+<td align="center">float</td>
+<td align="center">double</td>
 </tr>
 <tr>
-<td>integer</td>
-<td>long</td>
-<td>long</td>
+<td align="center">integer</td>
+<td align="center">long</td>
+<td align="center">long</td>
 </tr>
 <tr>
-<td>object</td>
-<td>object</td>
-<td>object</td>
+<td align="center">object</td>
+<td align="center">object</td>
+<td align="center">object</td>
 </tr>
 <tr>
-<td>array</td>
-<td>取决于数组中第一个非空值的类型</td>
-<td>取决于数组中第一个非空值的类型</td>
+<td align="center">array</td>
+<td align="center">取决于数组中第一个非空值的类型</td>
+<td align="center">取决于数组中第一个非空值的类型</td>
 </tr>
 <tr>
-<td>通过日期检测的string</td>
-<td>date</td>
-<td>date</td>
+<td align="center">通过日期检测的string</td>
+<td align="center">date</td>
+<td align="center">date</td>
 </tr>
 <tr>
-<td>通过数字检测的string</td>
-<td>float或者long</td>
-<td>double或者long</td>
+<td align="center">通过数字检测的string</td>
+<td align="center">float或者long</td>
+<td align="center">double或者long</td>
 </tr>
 <tr>
-<td>没有通过日期检测与数字检测的string</td>
-<td>带有.keyword子域的text</td>
-<td>keyword</td>
+<td align="center">没有通过日期检测与数字检测的string</td>
+<td align="center">带有.keyword子域的text</td>
+<td align="center">keyword</td>
 </tr>
 </tbody></table>
 <p>若将dynamic设置为false，出现新的字段，则会拒绝该文档。</p>
