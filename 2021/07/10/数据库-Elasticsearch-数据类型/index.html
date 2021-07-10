@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lu"><title>数据库-Elasticsearch-数据类型 · 这里是lu</title><meta name="description" content="数据类型字段类型是按族分组的。同一族的类型支持相同的搜索功能，但可能有不同的空间使用或性能特征。
+目前，唯一的类型族是keyword，它由keyword、constant_keyword和通配符字段类型组成。其他类型族只有一个字段类型。
+分类常见类型
+binaryBase64编码的二进制类型
+boo"><meta name="keywords" content="lu的博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">这里是lu</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/EverySeptember"><i class="fa fa-github"></i></a></li></ul><div class="footer"><div class="p"> <span>©  </span><i class="fa fa-star"></i><span> lu</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>数据库-Elasticsearch-数据类型</a></h3></div><div class="post-content"><h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>字段类型是按族分组的。同一族的类型支持相同的搜索功能，但可能有不同的空间使用或性能特征。</p>
+<p>目前，唯一的类型族是keyword，它由keyword、constant_keyword和通配符字段类型组成。其他类型族只有一个字段类型。</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="常见类型"><a href="#常见类型" class="headerlink" title="常见类型"></a>常见类型</h3><ul>
+<li><code>binary</code>Base64编码的二进制类型</li>
+<li><code>boolean</code>包含<code>true</code>和<code>false</code></li>
+<li><code>Keywords</code> <code>Keywords</code>类型族，包括<code>keyword</code>、<code>constant_keyword</code>和<code>wildcard</code>。</li>
+<li><code>Numbers</code>数据类型</li>
+<li><code>Dates</code>日期相关数据类型</li>
+</ul>
+<h3 id="对象相关"><a href="#对象相关" class="headerlink" title="对象相关"></a>对象相关</h3><ul>
+<li><code>object</code>JSON对象</li>
+<li><code>flattened</code>将整个JSON对象映射为一个字段</li>
+<li><code>nested</code>一个保留了其子字段之间关系的JSON对象</li>
+<li><code>join</code>在同一索引中定义文档的继承关系</li>
+</ul>
+<h3 id="结构化数据类型"><a href="#结构化数据类型" class="headerlink" title="结构化数据类型"></a>结构化数据类型</h3><ul>
+<li><code>Range</code>范围类型，如long_range、double_range、date_range和ip_range</li>
+<li><code>ip</code>IPv4和IPv6地址</li>
+<li><code>version</code>软件版本。支持Semantic Versioning优先规则。</li>
+<li><code>murmur3</code>计算和存储数值的哈希值</li>
+</ul>
+<h3 id="聚合数据类型"><a href="#聚合数据类型" class="headerlink" title="聚合数据类型"></a>聚合数据类型</h3><ul>
+<li><code>aggregate_metric_double</code>预先汇总的度量值</li>
+<li><code>histogram</code>以柱状图的形式预先汇总的数值</li>
+</ul>
+<h3 id="文本搜索类型"><a href="#文本搜索类型" class="headerlink" title="文本搜索类型"></a>文本搜索类型</h3><ul>
+<li><code>text</code>经过分析的，非结构化的文本</li>
+<li><code>annotated-text</code>含有特殊标记的文本，用于识别命名的实体</li>
+<li><code>completion</code>用于自动完成建议</li>
+<li><code>search_as_you_type</code>TODO类文本类型？</li>
+<li><code>token_count</code>文本中标记的计数</li>
+</ul>
+<h3 id="文档排行类型"><a href="#文档排行类型" class="headerlink" title="文档排行类型"></a>文档排行类型</h3><ul>
+<li><code>dense_vector</code>记录浮点数值的密集向量</li>
+<li><code>sparse_vector</code>记录浮点数值的稀疏向量</li>
+<li><code>rank_feature</code>记录一个数字特征，以提高查询时的点击率</li>
+<li><code>rank_features</code>记录数字特征，以便在查询时提高点击率</li>
+</ul>
+<h3 id="空间数据类型"><a href="#空间数据类型" class="headerlink" title="空间数据类型"></a>空间数据类型</h3><ul>
+<li><code>geo_point</code>纬度和经度点</li>
+<li><code>geo_shape</code>复杂的形状，如多边形</li>
+<li><code>point</code>任意的笛卡尔点</li>
+<li><code>shape</code>任意的笛卡尔几何图形</li>
+</ul>
+<h3 id="其他类型"><a href="#其他类型" class="headerlink" title="其他类型"></a>其他类型</h3><ul>
+<li><code>percolator</code>对用查询DSL编写的查询进行索引</li>
+</ul>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>在Elasticsearch中，数组并不要求有专门的字段数据类型。任何字段在默认情况下都可以包含零个或多个值，然而，数组中的所有值都必须是相同的字段类型。</p>
+<h3 id="多字段"><a href="#多字段" class="headerlink" title="多字段"></a>多字段</h3><p>可以对同一字段以不同的方式进行索引</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-07-10</span><i class="fa fa-tag"></i><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/Elasticsearch/" title="Elasticsearch">Elasticsearch </a><span class="leancloud_visitors"></span></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/07/10/%E6%95%B0%E6%8D%AE%E5%BA%93-Elasticsearch-%E8%BF%90%E8%A1%8C%E6%97%B6%E5%AD%97%E6%AE%B5/" title="数据库-Elasticsearch-运行时字段">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
