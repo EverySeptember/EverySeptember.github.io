@@ -95,3 +95,50 @@ PUT my-index-000001
 
 ## 显式映射
 
+类似于关系型数据库首先定义表结构，es可以再创建索引时显示地定义映射，或者在已经存在的索引中新增映射。
+
+### 创建索引时定义映射
+
+```elasticsearch
+PUT /my-index-000001
+{
+  "mappings": {
+    "properties": {
+      "age":    { "type": "integer" },
+      "email":  { "type": "keyword"  },
+      "name":   { "type": "text"  }
+    }
+  }
+}
+```
+
+### 在已经存在的映射中新增字段
+
+```console
+PUT /my-index-000001/_mapping
+{
+  "properties": {
+    "employee-id": {
+      "type": "keyword",
+      "index": false
+    }
+  }
+}
+```
+
+映射中已经存在的字段不能修改，修改一个现有字段的映射可能会使数据无效。
+
+## 查看映射
+
+### 查看索引中所有映射关系
+
+```
+GET /索引名/_mapping
+```
+
+### 查看某个字段的映射
+
+```console
+GET /索引名/_mapping/field/字段名
+```
+
